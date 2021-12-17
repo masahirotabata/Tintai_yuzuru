@@ -1,0 +1,25 @@
+<h2検索結果一覧</h2>
+
+<table class="table table-hover table-inverse">
+  <!--検索対象モデルがcustomerの時 -->
+  <% if @range == "Customer" %>
+    <tbody>
+      <% @customers.each do |customer| %>
+        <tr>
+          <td><%= customer.last_name %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% else %>
+    <!--検索対象モデルがcustomerではない時(= 検索対象モデルがreal_estateの時) -->
+    <tbody>
+      <% @real_estates.each do |real_estate| %>
+        <tr>
+          <td><%= real_estate.real_estate_name %></td>
+          <td><%= real_estate.prefecture %></td>
+          <td><%= real_estate. nearest_station %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  <% end %>
+</table>

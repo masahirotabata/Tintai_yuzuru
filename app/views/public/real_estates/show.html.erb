@@ -1,0 +1,71 @@
+<h1>譲れる物件詳細ページです</h1>
+
+
+物件名
+<%= @real_estate.real_estate_name %>
+最寄駅
+<%= @real_estate.nearest_station %>
+種別
+<%= @real_estate.kinds %>
+構造
+<%= @real_estate.structure %>
+建築年月日
+<%= @real_estate.date_of_construction %>
+階建て
+<%= @real_estate.floor_building %>
+駐車場
+<%= @real_estate.parking %>
+引っ越し予定日
+<%= @real_estate.scheduled_to_move_out %>
+譲る価格
+<%= @real_estate.offer_price %>
+現在の賃貸ステータス
+<%= @real_estate.real_estate_status %>
+
+<%= link_to "物件投稿者",admin_customer_path(@real_estate.customer_id) %>
+
+<h1>物件投稿者をフォローしてマッチングすると、上記物件を交渉することができます。</h1>
+  <% if @customer %>
+        フォロー数: <%=link_to(@customer.followings.count,public_customer_relationships_path(current_customer)) %>
+        フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_path(current_customer))  %>
+  <% if current_customer.following?(@customer) %>
+  <%= link_to "フォロー外す", admin_customer_relationship_path(current_customer), method: :delete %>
+  <% else %>
+  <%= link_to "フォローする", admin_customer_relationships_path(current_customer), method: :post %>
+  <% end %>
+  
+ <% if @real_estate.customers.matchers %>
+
+    <div class='col-md-9 offset-md-1'>
+      <div class='row'>
+        <div class='col'>
+          <%= attachment_image_tag real_estate, :image, :fill, 200, 200, fallback: "no-image.jpg" %>
+        </div>
+        <div class='col'>
+          <p class='cake_name'><%= real_estate.real_estate_name %></p>
+          <p class='cake_introduction'><%= simple_format( real_estate.detail ) %></p>
+          <p>提供価格:¥<%= real_estate.add_tax_price.to_s(:delimited) %>(税込)</p>
+          <%= form_with model: @order_real_estate, url: public_order_real_estates_path, method: :post do |f| %>
+            <!--顧客情報送信フィールド-->
+            <%= f.hidden_field :real_estate_id, value: real_estate.id %>
+            <%= f.hidden_field :customer_id, value: current_customer.id %>
+            <!--購入数のセレクトボックス-->
+            <%= f.select :pieces, options_for_select((1..10).to_a) %>
+            <%= f.submit "交渉物件に加える" %>
+        </div>
+         <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<% else %>
+ <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+   
+  <% end %>
+    

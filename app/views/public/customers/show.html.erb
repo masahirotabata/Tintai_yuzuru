@@ -1,0 +1,76 @@
+<div class='container px-5 px-sm-0'>
+  <% if @customer.id == current_customer.id %>
+  <%= render 'public/searches/search' %>
+   <% end %>
+
+<%=link_to('譲りたい物件一覧',public_real_estates_path) %> 
+<%= link_to('交渉中物件',public_negotiates_path ) %>
+<%= link_to('マッチング成立物件',public_order_real_estates_path ) %>
+<%= link_to('引っ越し待ち物件',public_order_real_estates_path ) %>
+
+<div class='container px-5 px-sm-0'>
+  <%# if @customer.id == current_customer.id %>
+  <%#= render 'searches/search' %>
+   <%# end %>
+  <div class='row'>
+    <div class='col-md-3'>
+      <h2>自己紹介欄(記入項目が多いほど、賃貸物件を譲ってもらいやすくなります。)</h2>
+      <%= render 'info', customer: @customer %>
+      
+<!--      <div class='row'>-->
+<!--  <%#= link_to '',edit_customer_path(@customer.id),class: "btn btn-outline-secondary btn-block fas fa-customer-cog edit_customer_#{@customer.id}" %>-->
+<!--</div>-->
+
+<tbody>
+    <% if @customer %>
+        フォロー数: <%=link_to(@customer.followings.count,public_customer_relationships_path(current_customer)) %>
+        フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_path(current_customer))  %>
+        <% if current_customer.following?(@customer) %>
+  <%= link_to "フォロー外す", public_customer_relationship_path(current_customer), method: :delete %>
+  <% else %>
+  <%= link_to "フォローする", public_customer_relationships_path(current_customer), method: :post %>
+  <% end %>
+        </td>
+  <% else %>
+  <p>ユーザーはいません</p>
+      </tr>
+      <% end %>
+</tbody>
+     
+       
+
+
+ニックネーム
+
+職業
+
+引っ越しの真剣度
+
+引っ越ししたい時期
+
+コメント
+
+<%= link_to("自己紹介を記入する",edit_public_customer_path) %>
+
+
+
+
+
+<%#=form_with model: @relationship, url :public_relationship_index_path do |f| %>
+    <%#= hidden_field :following_id, current_customer.id %>
+    <%#= f.submit "フォローする", class: "btn btn-primary" %>
+ 
+ <%# end %>
+
+
+<%#=link_to('賃貸物件を提供する',"new_real_estate_path")　%>
+
+<%#= link_to('いいねした賃貸物件',"negotiate_real_estates_path")　%>
+
+<%#= マッチング成立物件　%>
+
+<%#= 問い合わせ　%>
+
+<%#=　退会　%>
+
+
