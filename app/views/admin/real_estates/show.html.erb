@@ -1,0 +1,32 @@
+<h1>譲れる物件詳細ページです</h1>
+
+
+物件名
+<%= @real_estate.real_estate_name %>
+最寄駅
+<%= @real_estate.nearest_station %>
+種別
+<%= @real_estate.kinds %>
+構造
+<%= @real_estate.structure %>
+建築年月日
+<%= @real_estate.date_of_construction %>
+階建て
+<%= @real_estate.floor_building %>
+駐車場
+<%= @real_estate.parking %>
+引っ越し予定日
+<%= @real_estate.scheduled_to_move_out %>
+譲る価格
+<%= @real_estate.offer_price %>
+現在の賃貸ステータス
+<%= @real_estate.real_estate_status %>
+
+  <% if @customer = current_customer %>
+        フォロー数: <%=link_to(@customer.followings.count,public_customer_relationships_path(current_customer)) %>
+        フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_path(current_customer))  %>
+  <% end %>
+  
+
+     
+    

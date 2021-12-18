@@ -1,0 +1,53 @@
+<div class="container">
+  <div class="row mb-5 mx-1">
+    <div class="col mb-3">
+      <h3>交渉履歴詳細</h3>
+      <div class="row mt-5">
+        <div class="col-9">
+          <p>交渉情報</p>
+          <table class="table table-bordered">
+            <tbody>
+              <tr>
+                <th bgcolor="#fce4ec">交渉日</th>
+                <td bgcolor="#fcf7f7">
+                  <%= @order.created_at.strftime('%Y年%m月%d日') %>
+                </td>
+              </tr>
+            
+                <th bgcolor="#fce4ec">支払方法</th>
+                <td bgcolor="#fcf7f7">
+                  <%= @order.payment_method %>
+                </td>
+              </tr>
+              <tr>
+                <th bgcolor="#fce4ec">ステータス</th>
+                <td bgcolor="#fcf7f7">
+                  <%= @order.order_status_i18n  %>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="col-3">
+         
+      <div class="row mb-5">
+        <p>交渉内容</p>
+        <table class="table table-bordered">
+          <tbody>
+            <tr bgcolor="#fce4ec">
+              <th>賃貸物件名</th>
+              <th>譲渡価格（税込）</th>
+            </tr>
+            <% @order.order_real_estates.each do |order_real_estate| %>
+              <tr bgcolor="#fcf7f7">
+                <td>
+                  <%= order_real_estate.real_estate.real_estate_name %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>

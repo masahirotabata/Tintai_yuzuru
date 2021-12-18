@@ -1,0 +1,38 @@
+<th>譲れる物件一覧</th>
+      <th>あなたが譲れる物件として、投稿している物件一覧が表示されます。</th>
+      
+      <th colspan="3"></th>
+<tbody.tab>
+  <% @real_estates.each do |real_estate| %>
+    
+    <td><%= real_estate.real_estate_name %></td>
+    <td><%= real_estate.nearest_station %></td>
+    <td><%= real_estate.structure %></td>
+          
+         
+    <%= link_to('賃貸物件詳細', admin_real_estate_path(real_estate.id)) %>
+  
+    </tbody>
+    </table>
+  
+    <%if real_estate.customer_id != nil%>
+    <%= link_to "物件投稿者", admin_customer_path(customer_id: real_estate.customer_id) %>
+    <%end%>
+    
+  
+   
+  　<%# if customer = admin? %>
+    <%# if real_estate.customers %>
+    <% if customer_signed_in? %>
+        <% if real_estate.customer_id != nil%>
+              フォロー数: <%=link_to(@customer.followings.count,public_customer_relationships_path(real_estate.customer_id)) %>
+              フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_path(real_estate.customer_id))  %>
+        <% end %>
+        <% if current_customer.following?(@customer) %>
+          <%= link_to "フォロー外す", admin_customer_relationship_path(current_customer), method: :delete %>
+        <% else %>
+          <%= link_to "フォローする", admin_customer_relationships_path(current_customer), method: :post %>
+        <% end %>
+    <% end %>
+  <% end %>
+  <%# end %>

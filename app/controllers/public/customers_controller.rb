@@ -32,22 +32,23 @@ class Public::CustomersController < ApplicationController
   end
   
   def edit
-      
-     if  @customer = current_customer
     
- 
-     render:edit
+   @customer = Customer.find(params[:id])
+   
+   if @customer
+    
+   render:edit
 
    else
 
-    redirect_to public_customer_path(customer_id)
+    redirect_to public_customer_path(current_customer)
 
    end
 
   end
   
   def update
-    @customer = current_customer
+    @customer = Customer.find(params[:id])
     if @customer.update(customer_params)
       redirect_to public_customer_path(@customer), notice: "You have updated customer successfully."
     else

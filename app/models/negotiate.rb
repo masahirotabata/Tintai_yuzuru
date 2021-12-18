@@ -1,6 +1,15 @@
 class Negotiate < ApplicationRecord
+    
+  belongs_to Customer
+  belongs_to Real_estate
+  belongs_to Order
+  belongs_to :follower, class_name: "Customer"
+  belongs_to :followed, class_name: "Customer"
+  belongs_to :following, class_name: "Customer",optional: true
+  belongs_to :customer, optional: true
+  belongs_to :real_estate,optional: true
   has_many :favorites
- has_many :post_comments, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
   # フォローをした、されたの関係
 has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy

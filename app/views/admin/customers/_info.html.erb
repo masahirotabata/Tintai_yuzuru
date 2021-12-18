@@ -1,3 +1,4 @@
+<% if @customer %>
 <table class='table'>
   <tr><%= attachment_image_tag(@customer_tag,  :real_estates_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
   <tr>
@@ -16,18 +17,11 @@
 
 
 
-<tbody>
-    <%# if @customer %>
-        フォロー数: <%#=link_to(@customer.following.count,customer_followings_path(@customer.id)) %>
-        フォロワー数: <%#= link_to(@customer.followers.count,customer_followers_path(@customer.id))  %>
-        <%# if current_customer.following?(@customer) %>
-  <%#= link_to "フォロー外す", customer_relationships_path(@customer.id), method: :delete %>
-  <%# else %>
-  <%#= link_to "フォローする", customer_relationships_path(@customer.id), method: :post %>
-  <%# end %>
-        </td>
-  <% #else %>
-  <p>ユーザーはいません</p>
+
+        
+  <% else %>
+  <p>ユーザー情報はありません。</p>
+  <% end %>
       </tr>
       <%# end %>
 </tbody>

@@ -1,0 +1,9 @@
+<%= form_with model: @address, url:addresses_path, local: true do |f| %>
+  <div class="address-box">
+   投稿する
+    <%= f.text_field :area, class:"area", placeholder:"エリア" %>
+    <%= f.text_area :text, class:"text", placeholder:"テキスト" %>
+    <%= f.collection_select(:prefecture_id, Prefecture.all, :id, :name, {}, {class:"prefecture-select"}) %>
+    <%= f.submit "投稿する" ,class:"btn" %>
+  </div>
+<% end %>

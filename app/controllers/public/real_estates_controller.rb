@@ -1,6 +1,6 @@
 class Public::RealEstatesController < ApplicationController
     
-     def new
+  def new
     @real_estate = RealEstate.new
   end
   
@@ -32,7 +32,7 @@ end
     private
 
   def real_estate_params
-    params.require(:real_estate).permit(:category_id,:customer_id,:prefecture_id,:real_estate_image_id,
+    params.require(:real_estates).permit(:category_id,:customer_id,:prefecture_id,:real_estate_image_id,
     :detail,:real_estate_name,:nearest_station,:kinds,:structure,:date_of_construction,:floor_building,
     :parking,:scheduled_to_move_out,:offer_price,:comments,:real_estate_status)
   end

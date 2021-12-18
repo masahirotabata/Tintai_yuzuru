@@ -1,0 +1,48 @@
+<div class="container" style="margin-bottom: 250px;">
+  <div class="row">
+    <div class="col">
+      <h2>交渉内容確認</h2>
+      <% @sum = 0 %>
+      <div class="row mt-3">
+        <div class="col-8">
+          <table class="table table-bordered">
+            <thead>
+              <tr>
+                <th>物件名</th>
+                <th>譲渡価格（税込）</th>
+                <th>小計</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% @order_real_estates.each do |order_real_estate| %>
+                <tr>
+                  <td>
+                    <%= link_to real_estate_path(order_real_estate) do %>
+                      <%= attachment_image_tag order_real_estate.real_estate , :image, :fill,50,50 ,fallback: "no_image.jpg",size: "50x50" %>
+                      <%= order_real_estate.real_estate.real_estate_name %>
+                    <% end %>
+                  </td>
+                  <td>
+                    <% @real_estate_price = order_real_estate.real_estate.price * 1.1 %>
+                    ¥<%= @real_estate_price.floor.to_s(:delimited) %>
+                  </td>
+                  <td>
+                    <%= order_real_estate.pieces %>
+                  </td>
+                </tr>
+              <% end %>
+            </tbody>
+          </table>
+        </div>
+       
+      </div>
+      <div class="row">
+        <h3 class="mr-3">支払い方法</h3>
+        <p style="font-size: 20px;"><%= @order.payment_method %></p>
+      </div>
+          <%= f.submit "交渉を確定する" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

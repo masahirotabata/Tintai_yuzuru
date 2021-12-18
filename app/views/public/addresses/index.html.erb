@@ -1,0 +1,16 @@
+<h1>エリア一覧</h1>
+<%= link_to "投稿する", new_address_path, class:"post" %>
+
+<% @adress.each do |address| %>
+  <div class="address">
+    <div class="address-area">
+      <%= address.prefecture.name %>
+    </div>
+    <div class="address-title">
+      <%= address.area %>
+    </div>
+    <div class="address-text">
+      <%= address.text %>
+    </div>
+  </div>
+<% end %>

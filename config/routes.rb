@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
+  namespace :public do
+    get 'addresses/index'
+    get 'addresses/new'
+  end
   root 'public/homes#top'
+  resources :addresses
 
   #管理者
   devise_for :admin, skip: [:passwords] ,controllers: {
@@ -23,11 +28,12 @@ Rails.application.routes.draw do
         patch 'customers/out' => 'customers#out'
       end
     end
+     resources :addresses
      resources :searches
     get "search" => "searches#search"
     
     resources :categories, only:[:index, :edit, :create, :update]
-    resources :real_estates, only:[:new, :index, :edit, :create, :update] do
+    resources :real_estates, only:[:show, :new, :index, :edit, :create, :update] do
     resources :favorites , only: [:create , :destroy]
     end
     resources :negotiates, only:[:index, :edit, :create, :update]
@@ -56,7 +62,7 @@ Rails.application.routes.draw do
     
     resources :categories, only:[:index, :edit, :create, :update]
     resources :real_estates, only:[:new, :index, :edit, :create, :update] do
-      resources :favorites , only: [:create , :destroy]
+    resources :favorites , only: [:create , :destroy]
     end
     resources :negotiates, only:[:index, :edit, :create, :update]
     resources :orders, only:[:index, :show, :update]

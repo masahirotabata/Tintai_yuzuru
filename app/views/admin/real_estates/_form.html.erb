@@ -1,0 +1,35 @@
+<%= form_with model: [:admin, real_estate], local: true do |f| %>
+
+ <div class="form-group row">
+   <%= f.label :image, "賃貸物件画像" %>
+   <%= f.attachment_field :image %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.text_field :real_estate_name, placeholder: "賃貸物件名" %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :detail, "賃貸物件説明" %>
+    <%= f.text_area :detail, placeholder: "ここに説明文を記述します" %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :category_id, "ジャンル" %>
+    <%= f.collection_select :category_id, Genre.all, :id, :name, {prompt: "選択してください"} %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :offer_price, "税抜き価格" %>
+    <%= f.text_field :offer_price, placeholder: "賃貸物件の税別価格を記述して下さい" %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :real_estate_status, "賃貸ステータス" %>
+    <!-- 後日enum追加 -->
+  </div>
+
+  <div class="form-group row">
+     <%= f.submit "新規登録", class:"btn btn-success" %>
+  </div>
+<% end %>

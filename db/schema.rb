@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_16_081624) do
+ActiveRecord::Schema.define(version: 2021_12_17_094131) do
+
+  create_table "addresses", force: :cascade do |t|
+    t.string "area", null: false
+    t.text "text", null: false
+    t.integer "prefecture_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "admins", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,7 +36,7 @@ ActiveRecord::Schema.define(version: 2021_12_16_081624) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-    
+
   create_table "categories", force: :cascade do |t|
     t.integer "prefecture_id"
     t.string "category_name"
@@ -143,6 +151,5 @@ ActiveRecord::Schema.define(version: 2021_12_16_081624) do
     t.index ["customer_id"], name: "index_relationships_on_customer_id"
     t.index ["follow_id"], name: "index_relationships_on_follow_id"
   end
-    t.integer  "real_estate_location"
 
 end
