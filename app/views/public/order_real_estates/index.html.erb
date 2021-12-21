@@ -1,68 +1,29 @@
-<div class="container" style="margin-bottom:500px;">
-  <%= render "shared/flash_message" %>
-  <div class="row">
-    <div class="col">
-    <h4>交渉物件カート</h4>
-      <!--カート内に商品が入っていれば表示-->
-      <% if @customer_order_real_estates.exists? %>
-        <div class="text-right mb-3">
-          <%= link_to "交渉物件カートを空にする", order_real_estates_destroy_all_order_real_estates_path, method: :delete, class: "btn", style: "background-color: #b4d4d4; color: white;" %>
-        </div>
-        <table class="table">
-          <thead>
-            <tr bgcolor="#fce4ec">
-              <th>賃貸物件名</th>
-              <th>譲渡価格（税込）</th>
-              <th>小計</th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody>
-            <% @sum = 0 %>
-            <% @customer_order_real_estates.each do |order_real_estate| %>
-            <tr bgcolor="#fcf7f7">
-              <td>
-                <%= link_to real_estate_path(order_real_estate.real_estate) do %>
-                  <%= attachment_image_tag order_real_estate.real_estate , :image, :fill,50,50 ,fallback: "no_image.jpg",size: "50x50" %>
-                  <%= order_real_estate.real_estate.real_estate_name %>
-                <% end %>
-              </td>
-              <td>
-                <% @real_estate_price = order_real_estate.real_estate.price * 1.1 %>
-                ¥<%= @real_estate_price.floor.to_s(:delimited) %>
-              </td>
-              <td>
-                <%= form_with model: @order_real_estate, url: order_real_estate_path(order_real_estate), method: :patch, local: true do |f| %>
-                <%= f.hidden_field :customer_id, :value => current_customer.id %>
-                <%= f.hidden_field :real_estate_id, :value => order_real_estate.real_estate.id %>
-                <%= f.submit "更新", class: "btn ml-3",style: "background-color: #dcf4f4; color: #778899;" %>
-                <% end %>
-              </td>
-             
-              <td>
-                <%= link_to "削除する",public_ order_real_estate_path(order_real_estate), method: :delete, class: "btn", style: "background-color:#ecc4d4; color: red;" %>
-              </td>
-            </tr>
-            <% end %>
-          </tbody>
-        </table>
-     </div>
-    </div>
-          
-        <div class="row  justify-content-center">
-        <div class="col text-center">
-          <%= link_to "交渉を続ける", public_real_estates_path, class: "btn mt-5", style: "background-color: #6599cc; color: white;" %>
-        </div>
+<div class="cover-customer-index">
+  <div class="container">
+    <div class="row justify-content-center">
         
-        <div class="col text-center">
-          <%= link_to "情報入力画面に進む", new_public_orders_path, class: "btn mt-5", style: "background-color: #5cb85c; color: white;" %>
-        </div>
-        </div>
-      <!--カート内に商品が入っていなければ表示-->
-      <% else %>
-        <div class="text-center mt-5" style="font-size: 20px;">
-          <p>現在、カート内に商品は入っていません</p>
-        </div>
-      <% end %>
-      </div>
+      <h3 class="font-weight-normal mt-5 mb-5">マッチングしているユーザ一覧です。物件投稿者と交渉することができます。</h3>
+      <% if  @matchers_customers %>
     </div>
+    <div class="row justify-content-center">
+      <% @matchers_customers.each do |customer| %>
+      <div class="one-post card w-100">
+        <%= link_to admin_customer_path(customer) do %>
+        <p class="caption h4"><%= customer.last_name %></p>
+         <p class="caption h4"><%= link_to customer.real_estates.real_estate_name,public_order_real_estates_path(customer) %></p>
+        <div class="d-flex">
+          <tr><%#= attachment_image_tag(@customer_tag, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
+          <h4 class="ml-5"><%#= customer.profile_image %></h4>
+        </div>
+        <p class="caption"><%#= "#{customer.post_comments.count} 投稿" %></p>
+        <% end %>
+      </div>
+      <% end %>
+      
+      <% else %>
+       現在マッチングしている物件投稿者はいません。
+      
+      <% end %>
+    </div>
+  </div>
+</div>

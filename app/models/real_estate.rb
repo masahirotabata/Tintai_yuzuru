@@ -4,11 +4,35 @@ class RealEstate < ApplicationRecord
   has_many :notifications
   belongs_to :customer,optional: true
   has_many :orders
+  
+  
+   # フォローをした、されたの関係
+has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+has_many :reverse_of_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+
+# 一覧画面で使う
+has_many :followings, through: :relationships, source: :follow
+has_many :followers, through: :reverse_of_relationships, source: :follower
+
+def follow(customer_id)
+  relationships.create(followed_id: customer_id)
+end
+# フォローを外すときの処理
+def unfollow(user_id)
+  relationships.find_by(followed_id: customer_id).destroy
+end
+# 現在のユーザーがフォローしてたらtrueを返す
+  def following?(follow)
+    followings.include?(follow)
+  end
+
+
+# def matchers
+#   followings & followers
+# end
+
 	
- def favorited_by?(customer)
-    favorites.where(customer_id: customer.id).exists?
- end
-    
+ 
     
     
  def self.looks(search, word)

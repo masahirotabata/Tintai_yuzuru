@@ -16,7 +16,7 @@ class Public::RealEstatesController < ApplicationController
   
 def show
 @real_estate = RealEstate.find(params[:id])
-@customer = @real_estate.customers
+@customer = @real_estate.customer
  
 end
 

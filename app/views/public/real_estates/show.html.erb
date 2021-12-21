@@ -22,7 +22,7 @@
 現在の賃貸ステータス
 <%= @real_estate.real_estate_status %>
 
-<%= link_to "物件投稿者",admin_customer_path(@real_estate.customer_id) %>
+<%#= link_to "物件投稿者",admin_customer_path(@real_estate.customer_id) %>
 
 <h1>物件投稿者をフォローしてマッチングすると、上記物件を交渉することができます。</h1>
   <% if @customer %>
@@ -53,7 +53,7 @@
             <%= f.select :pieces, options_for_select((1..10).to_a) %>
             <%= f.submit "交渉物件に加える" %>
         </div>
-         <% else 
+     
          <% end %>
       </div>
     </div>

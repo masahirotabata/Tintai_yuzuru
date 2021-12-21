@@ -23,8 +23,13 @@
 <%= @real_estate.real_estate_status %>
 
   <% if @customer = current_customer %>
-        フォロー数: <%=link_to(@customer.followings.count,public_customer_relationships_path(current_customer)) %>
-        フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_path(current_customer))  %>
+        フォロー数: <%=link_to(@customer.following.count,admin_customer_path(@customer)) %>
+    フォロワー数: <%= link_to(@customer.followers.count,admin_customer_path(@customer))  %>
+         <% if current_customer.following?(current_customer) %>
+          <%= link_to "フォロー外す", public_customer_relationship_path(@customer), method: :delete %>
+        <% else %>
+          <%= link_to "フォローする", public_customer_relationships_path(@real_estate.customer_id), method: :post %>
+        <% end %>
   <% end %>
   
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_17_094131) do
+ActiveRecord::Schema.define(version: 2021_12_20_094822) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "area", null: false
@@ -33,6 +33,11 @@ ActiveRecord::Schema.define(version: 2021_12_17_094131) do
   end
 
   create_table "areas", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "cart_real_estates", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -142,14 +147,11 @@ ActiveRecord::Schema.define(version: 2021_12_17_094131) do
   create_table "relationships", force: :cascade do |t|
     t.integer "follower_id"
     t.integer "followed_id"
-    t.integer "following"
-    t.integer "customer_id"
-    t.integer "follow_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["customer_id", "follow_id"], name: "index_relationships_on_customer_id_and_follow_id", unique: true
-    t.index ["customer_id"], name: "index_relationships_on_customer_id"
-    t.index ["follow_id"], name: "index_relationships_on_follow_id"
+    t.index ["followed_id"], name: "index_relationships_on_followed_id"
+    t.index ["follower_id", "followed_id"], name: "index_relationships_on_follower_id_and_followed_id", unique: true
+    t.index ["follower_id"], name: "index_relationships_on_follower_id"
   end
 
 end

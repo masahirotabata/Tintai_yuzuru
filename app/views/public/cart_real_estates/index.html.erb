@@ -1,0 +1,84 @@
+<div class="container" style="margin-bottom:500px;">
+  <%= render "shared/flash_message" %>
+  <div class="row">
+    <div class="col">
+    <h4>交渉物件カート</h4>
+      <!--カート内に商品が入っていれば表示-->
+      <% if @customer_cart_real_estates.exists? %>
+        <div class="text-right mb-3">
+          <%= link_to "交渉物件カートを空にする", cart_real_estates_destroy_all_cart_real_estates_path, method: :delete, class: "btn", style: "background-color: #b4d4d4; color: white;" %>
+        </div>
+        <table class="table">
+          <thead>
+            <tr bgcolor="#fce4ec">
+              <th>商品名</th>
+              <th>単価（税込）</th>
+              <th>数量</th>
+              <th>小計</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @sum = 0 %>
+            <% @customer_cart_real_estates.each do |cart_real_estate| %>
+            <tr bgcolor="#fcf7f7">
+              <td>
+                <%= link_to real_estate_path(cart_real_estate.real_estate) do %>
+                  <%= attachment_image_tag cart_real_estate.real_estate , :image, :fill,50,50 ,fallback: "no_image.jpg",size: "50x50" %>
+                  <%= cart_real_estate.real_estate.real_estate_name %>
+                <% end %>
+              </td>
+              <td>
+                <% @real_estate_price = cart_real_estate.real_estate.price * 1.1 %>
+                ¥<%= @real_estate_price.floor.to_s(:delimited) %>
+              </td>
+              <td>
+                <%= form_with model: cart_real_estate, url: cart_real_estate_path(cart_real_estate), method: :patch, local: true do |f| %>
+                  <%= f.select :pieces,[[0,0],[1,1],{inclued_blank: "個数選択"} %>
+                  <%= f.hidden_field :customer_id, :value => current_customer.id %>
+                  <%= f.hidden_field :real_estate_id, :value => cart_real_estate.real_estate.id %>
+                  <%= f.submit "更新", class: "btn ml-3",style: "background-color: #dcf4f4; color: #778899;" %>
+                <% end %>
+              </td>
+              <td>
+                <!--小計計算記述-->
+                <% @total = @real_estate_price * cart_real_estate.pieces.to_i %>
+                ¥<%= @total.floor.to_s(:delimited) %>
+              </td>
+                <!--合計金額表示記述-->
+                <% @sum += @total %>
+              <td>
+                <%= link_to "削除する", cart_real_estate_path(cart_real_estate), method: :delete, class: "btn", style: "background-color:#ecc4d4; color: red;" %>
+              </td>
+            </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <table align="right">
+          <tbody class="table table-bordered" style="font-size: 20px;">
+            <th bgcolor="#fce4ec">合計金額</th>
+            <td bgcolor="#fce4ec">¥<%= @sum.floor.to_s(:delimited) %></td>
+          </tbody>
+        </table>
+        <div>
+      </div>
+     </div>
+    </div>
+          
+        <div class="row  justify-content-center">
+        <div class="col text-center">
+          <%= link_to "賃貸物件交渉を続ける", public_customer_relationship_matchers_path, class: "btn mt-5", style: "background-color: #6599cc; color: white;" %>
+        </div>
+        
+        <div class="col text-center">
+          <%= link_to "情報入力画面に進む", new_order_path, class: "btn mt-5", style: "background-color: #5cb85c; color: white;" %>
+        </div>
+        </div>
+      <!--カート内に商品が入っていなければ表示-->
+      <% else %>
+        <div class="text-center mt-5" style="font-size: 20px;">
+          <p>現在、カート内に交渉物件は入っていません</p>
+        </div>
+      <% end %>
+      </div>
+    </div>

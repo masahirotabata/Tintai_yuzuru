@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  namespace :admin do
+    get 'order_real_estates/index'
+    get 'order_real_estates/show'
+  end
   namespace :public do
     get 'addresses/index'
     get 'addresses/new'
@@ -22,7 +26,8 @@ Rails.application.routes.draw do
       resources :relationships, only: [:create, :destroy] do
         get 'followings' => 'relationships#followings', as: 'followings'
         get 'followers' => 'relationships#followers', as: 'followers'
-      end
+        get 'matchers' => 'relationships#matchers', as: 'matchers'
+        end
       collection do
         get 'customers/leave' => 'customers#leave'
         patch 'customers/out' => 'customers#out'
@@ -48,9 +53,10 @@ Rails.application.routes.draw do
   #genres
   namespace :public do
     resources :customers do
-      resources :relationships, only: [:create, :destroy] do
-        get 'followings' => 'relationships#followings', as: 'followings'
+    resources :relationships, only: [:create, :destroy] do
+       get 'followings' => 'relationships#followings', as: 'followings'
         get 'followers' => 'relationships#followers', as: 'followers'
+        get 'matchers' => 'relationships#matchers', as: 'matchers'
       end
       collection do
         get 'customers/leave' => 'customers#leave'
@@ -61,7 +67,7 @@ Rails.application.routes.draw do
     get "search" => "searches#search"
     
     resources :categories, only:[:index, :edit, :create, :update]
-    resources :real_estates, only:[:new, :index, :edit, :create, :update] do
+    resources :real_estates, only:[:show,:new, :index, :create, :update] do
     resources :favorites , only: [:create , :destroy]
     end
     resources :negotiates, only:[:index, :edit, :create, :update]

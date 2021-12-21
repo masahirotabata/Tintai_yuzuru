@@ -1,16 +1,15 @@
-<% if @customer %>
+<% if @customer == current_customer %>
 <table class='table'>
   <tr><%= attachment_image_tag(@customer_tag,  :real_estates_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
   <tr>
 	  <th>名前</th>
-	  <th><%= @customer.last_name %></th>
+	  <th><%#= @customer.email %></th>
   </tr>
   <tr>
 	  <th>登録情報</th>
 	  <th><%#= @customer.introduction %></th>
   </tr>
 </table>
-
 <div class='row'>
   <%#= link_to ''edit_customer_registration_path_path(@customer.id),class: "btn btn-outline-secondary btn-block fas fa-customer-cog edit_customer_#{@customer.id}" %>
 </div>
@@ -21,6 +20,7 @@
         
   <% else %>
   <p>ユーザー情報はありません。</p>
+  
   <% end %>
       </tr>
       <%# end %>

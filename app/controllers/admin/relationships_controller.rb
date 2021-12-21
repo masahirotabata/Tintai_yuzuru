@@ -1,8 +1,6 @@
-class Public::RelationshipsController < ApplicationController
+class Admin::RelationshipsController < ApplicationController
     
-    before_action :set_customer
-    
-  def followings
+ def followings
   
   @followings = Customer.find(params[:customer_id]).following
     
@@ -15,10 +13,10 @@ class Public::RelationshipsController < ApplicationController
   end
   
   def matchers
-    @matchers = current_customer.matching
+    @matchers = followings & followers
   end
-
-  def create
+  
+  ef create
     following = current_customer.follow(set_customer)
     if following.save!
       flash[:success] = 'ユーザーをフォローしました'
@@ -38,10 +36,5 @@ class Public::RelationshipsController < ApplicationController
       flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
       redirect_to admin_customer_path(@customer)
     end
-  end
-
-  private
-  def set_customer
-    @customer = Customer.find(params[:customer_id])
-  end
+ 
 end

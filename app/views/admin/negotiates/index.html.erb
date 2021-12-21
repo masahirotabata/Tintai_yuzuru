@@ -1,0 +1,26 @@
+<div class="cover-customer-index">
+  <div class="container">
+    <div class="row justify-content-center">
+      <h3 class="font-weight-normal mt-5 mb-5">フォローされているユーザ一覧です。マッチングすると、物件を交渉できます。</h3>
+    </div>
+    <div class="row justify-content-center">
+      
+      <% if @following %>
+      <% @following.each do |following| %>
+      <div class="one-post card w-100">
+        <%= link_to public_customer_path(following) do %>
+        <p class="caption h4"><%= following.email %></p>
+        <div class="d-flex">
+          <tr><%#= attachment_image_tag(@customer_tag, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
+          <h4 class="ml-5"><%#= customer.profile_image %></h4>
+        </div>
+        <p class="caption"><%#= "#{customer.post_comments.count} 投稿" %></p>
+      <% end %>
+      <% end %>
+      </div>
+      <% else %>
+      フォローされているユーザーはいません。
+      <% end %>
+    </div>
+  </div>
+</div>

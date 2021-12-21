@@ -1,13 +1,13 @@
 <div class="cover-following-index">
   <div class="container">
     <div class="row justify-content-center">
-      <h1 class="font-weight-normal mt-5 mb-5">フォロー一覧</h1>
+      <h1 class="font-weight-normal mt-5 mb-5">マッチング一覧</h1>
     </div>
     <div class="row justify-content-center">
-      <% @followings.each do |following| %>
+      <% @matchers.each do |match| %>
       <div class="one-post card w-100">
-        <%= link_to public_customer_path(following) do %>
-        <p class="caption h4"><%= following.last_name %></p>
+        <%= link_to public_customer_path(match) do %>
+        <p class="caption h4"><%= match.last_name %></p>
         <div class="d-flex">
           <tr><%= attachment_image_tag(@following_tag, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
           <h4 class="ml-5"><%#= following.profile_image %></h4>
