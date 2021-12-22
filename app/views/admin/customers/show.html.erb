@@ -1,5 +1,4 @@
 
-<% if @customer == current_customer || admin_signed_in? %>
   <%= render 'public/searches/search' %>
   <h2>自己紹介欄(物件投稿者）</h2>
   <%= render 'info', customer: @customer %>
@@ -13,14 +12,16 @@
   フォロワー数: <%= link_to(@customer.followers.count,admin_customer_relationship_followers_path(customer_id: @customer.id, relationship_id: @customer.id))  %>
   <!--フォロー数: <#%=link_to(@real_estate.customer.relationships.count,admin_customer_path(current_customer)) %>-->
   <!--フォロワー数: <#%= link_to(@real_estate.customer.reverse_of_relationships.count,admin_customer_path(@real_estate))  %>-->
-  <% else %>
+
     <h2>自己紹介欄(物件投稿者）</h2>
 　  <%= render 'info', customer: @customer %>
     フォロー数: <%=link_to(@customer.following.count,admin_customer_path(@customer)) %>
     フォロワー数: <%= link_to(@customer.followers.count,admin_customer_path(@customer))  %>
-    <%= link_to "フォロー外す", public_customer_relationship_path(@customer), method: :delete %>
-    <%= link_to "フォローする", public_customer_relationships_path(@customer), method: :post %>
+   <%= link_to "フォロー外す", public_customer_relationship_path(current_customer), method: :delete %>
+  <% else %>
+  <%= link_to "フォローする", public_customer_relationships_path(current_customer), method: :post %>
+  <% end %>
  
     <%#= link_to "フォロー外す", public_customer_relationship_path(customer_id: @customer), method: :delete %>
     <%#= link_to "フォローする", public_customer_relationships_path(customer_id: @customer), method: :post %>
-<% end %>
+

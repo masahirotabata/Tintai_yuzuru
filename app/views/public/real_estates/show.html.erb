@@ -22,32 +22,33 @@
 現在の賃貸ステータス
 <%= @real_estate.real_estate_status %>
 
-<%#= link_to "物件投稿者",admin_customer_path(@real_estate.customer_id) %>
+<%#= link_to "物件投稿者",public_customer_path(@real_estate.customer_id) %>
 
-<h1>物件投稿者をフォローしてマッチングすると、上記物件を交渉することができます。</h1>
-  <% if @customer %>
-        フォロー数: <%=link_to(@customer.followings.count,public_customer_relationships_path(current_customer)) %>
+
+  <% if @real_estate.customer == current_customer || signed_in?  %>
+  <h1>物件投稿者をフォローしてマッチングすると、上記物件を交渉することができます。</h1>
+        フォロー数: <%=link_to(@customer.following.count,public_customer_relationships_path(current_customer)) %>
         フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_path(current_customer))  %>
   <% if current_customer.following?(@customer) %>
-  <%= link_to "フォロー外す", admin_customer_relationship_path(current_customer), method: :delete %>
+  <%= link_to "フォロー外す", public_customer_relationship_path(@customer), method: :delete %>
   <% else %>
-  <%= link_to "フォローする", admin_customer_relationships_path(current_customer), method: :post %>
+  <%= link_to "フォローする", public_customer_relationships_path(@customer), method: :post %>
   <% end %>
   
- <% if @real_estate.customers.matchers %>
+ <% if @real_estate.customer.matching %>
 
     <div class='col-md-9 offset-md-1'>
       <div class='row'>
         <div class='col'>
-          <%= attachment_image_tag real_estate, :image, :fill, 200, 200, fallback: "no-image.jpg" %>
+          <%#= attachment_image_tag @real_estate, :image, :fill, 200, 200, fallback: "no-image.jpg" %>
         </div>
         <div class='col'>
-          <p class='cake_name'><%= real_estate.real_estate_name %></p>
-          <p class='cake_introduction'><%= simple_format( real_estate.detail ) %></p>
-          <p>提供価格:¥<%= real_estate.add_tax_price.to_s(:delimited) %>(税込)</p>
+         <%= @real_estate.real_estate_name %></p>
+          <p class='cake_introduction'><%= simple_format( @real_estate.detail ) %></p>
+          <p>提供価格:¥<%#= @real_estate.tax_price.to_s(:delimited) %>(税込)</p>
           <%= form_with model: @order_real_estate, url: public_order_real_estates_path, method: :post do |f| %>
             <!--顧客情報送信フィールド-->
-            <%= f.hidden_field :real_estate_id, value: real_estate.id %>
+            <%= f.hidden_field :real_estate_id, value: @real_estate.id %>
             <%= f.hidden_field :customer_id, value: current_customer.id %>
             <!--購入数のセレクトボックス-->
             <%= f.select :pieces, options_for_select((1..10).to_a) %>
@@ -61,12 +62,8 @@
 </div>
 <% else %>
  <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-    
+ <% end %>
+       
    
-  <% end %>
+ 
     

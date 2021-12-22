@@ -2,7 +2,7 @@
   <tr><%= attachment_image_tag(@customer_tag,  :real_estates_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
   <tr>
 	  <th>名前</th>
-	  <th><%= @customer.last_name %></th>
+	  <th><%= @customer.email %></th>
   </tr>
   <tr>
 	  <th>登録情報</th>
@@ -21,10 +21,11 @@
 
 
 <tbody>
-        <% if @customer %>
-         フォロー数: <%=link_to(@customer.following.count,admin_customer_relationship_followings_path(relationship_id: @customer.id, customer_id: @customer.id)) %>
-         フォロワー数: <%= link_to(@customer.followers.count,admin_customer_relationship_followers_path(relationship_id: @customer.id,customer_id: @customer.id))  %>
-        <% else %>
-        フォロー、フォロワーがいません。
-        <% end %>
+        <h1>物件投稿者をフォローしてマッチングすると、物件を交渉することができます。</h1>
+  <% if @customer %>
+        フォロー数: <%=link_to(@customer.following.count,public_customer_relationships_path(current_customer)) %>
+        フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_path(current_customer))  %>
+  <% end %>
+          
+
 </tbody>

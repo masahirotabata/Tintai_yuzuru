@@ -34,7 +34,7 @@
               </td>
               <td>
                 <%= form_with model: cart_real_estate, url: cart_real_estate_path(cart_real_estate), method: :patch, local: true do |f| %>
-                  <%= f.select :pieces,[[0,0],[1,1],{inclued_blank: "個数選択"} %>
+                  <%#= f.select :pieces,[[0,0],[1,1],{inclued_blank: "個数選択"} %>
                   <%= f.hidden_field :customer_id, :value => current_customer.id %>
                   <%= f.hidden_field :real_estate_id, :value => cart_real_estate.real_estate.id %>
                   <%= f.submit "更新", class: "btn ml-3",style: "background-color: #dcf4f4; color: #778899;" %>

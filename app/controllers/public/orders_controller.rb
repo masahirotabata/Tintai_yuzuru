@@ -1,8 +1,8 @@
 class Public::OrdersController < ApplicationController
     
     def index
-    if current_customer.matchers
-    @customers = current_customer.matchers
+    if current_customer.matching
+    @customers = current_customer.matching
     else
     @customers
     end

@@ -1,31 +1,17 @@
 class Admin::RealEstatesController < ApplicationController
     
-    def index
     
-   @real_estates = RealEstate.where(customer_id: current_customer)
-    # if @customers = customer.followers
-     
-       
-    # # else
-    # end
+    def index
+   
     end
     
     def show
-      
-    @real_estate = RealEstate.find_by(id: params[:id])
+    
    
     end
     
     def create
    
-    @real_estate = RealEstate.new(real_estate_params)
-    @real_estate.customer_id = current_customer.id
-     
-    if @real_estate.save!
-      redirect_to admin_customer_path(@real_estate)
-    else
-      render 'new'
-    end
   
     end
     

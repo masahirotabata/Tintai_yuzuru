@@ -12,9 +12,19 @@
           </thead>
 
           <tbody>
-          <% @orders.each do |order| %>
-          <% end %>
-          </tbody>
+           <% if @orders %>
+           <% @orders.each do |order| %>
+    
+        <td><%= order.order_name %></td>
+        <td><%= order.nearest_station %></td>
+        <td><%= order.structure %></td>
+        
+       
+<%= link_to('賃貸物件詳細', admin_order_path(order.id)) %>
 
-       </table>
- </div>
+  </tbody>
+</table>
+          
+          <% end %>
+        <% end %>
+          

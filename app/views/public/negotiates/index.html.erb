@@ -1,10 +1,11 @@
 <div class="cover-customer-index">
   <div class="container">
     <div class="row justify-content-center">
-      <h3 class="font-weight-normal mt-5 mb-5">フォローされているユーザ一覧です。マッチングすると、物件を交渉できます。</h3>
+      <h3 class="font-weight-normal mt-5 mb-5">あなたがフォロー、もしくはフォローされているユーザ一覧です。マッチングすると、物件を交渉できます。</h3>
     </div>
     <div class="row justify-content-center">
       
+      フォローしているユーザー
       <% if @following %>
       <% @following.each do |following| %>
       <div class="one-post card w-100">
@@ -18,9 +19,22 @@
       <% end %>
       <% end %>
       </div>
-      <% else %>
+      <% elsif %>
+      
+      フォローされているユーザー
+      <% if @followers %>
+      <% @followers.each do |follower| %>
+      <div class="one-post card w-100">
+        <%= link_to admin_customer_path(followers) do %>
+        <p class="caption h4"><%= followers.email %></p>
+      
       フォローされているユーザーはいません。
       <% end %>
+      <% end %>
+      <% else %>
+      フォロー、もしくはフォローされているユーザーはいません。
+      <% end %>
+     <% end %>
     </div>
   </div>
 </div>

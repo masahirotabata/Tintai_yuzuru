@@ -1,0 +1,50 @@
+<nav class="navbar navbar-expand-lg navbar-light border-bottom">
+
+<header class="container">
+  <%= link_to root_path, class: "navbar-brand" do %>
+    <%#= image_tag 'header_logo_2.jpg', { height:50 } %>
+  <% end %>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+<div class="collapse navbar-collapse" id="navbarSupportedContent">
+  <ul class="navbar-nav ml-auto">
+    <% if customer_signed_in? %>
+    <span class="navbar-text">
+      ようこそ、<%= current_customer.last_name %>さん！
+     </span>
+
+  <li class="nav-real_estate">
+    <%= link_to "マイページ", public_customer_path(current_customer), class: "nav-link" %>
+  </li>
+  <li class="nav-real_estate">
+    <%= link_to "賃貸物件一覧", public_real_estates_path, class: "nav-link" %>
+  </li>
+  <li class="nav-real_estate">
+    <%= link_to "物件交渉カート", public_cart_real_estates_path, class: "nav-link" %>
+  </li>
+  <li class="nav-real_estate">
+    <%#= link_to "ログアウト", destroy_public_customer_session_path, method: :delete, class: "nav-link" %>
+  </li>
+
+  <% else %>
+
+    <li class="nav-real_estate">
+      <%= link_to "About", homes_about_path, class: "nav-link" %>
+    </li>
+    <li class="nav-real_estate">
+    <%= link_to "商品一覧", real_estates_path, class: "nav-link" %>
+    </li>
+    <li class="nav-real_estate">
+      <%= link_to "新規登録", new_public_customer_registration_path, class: "nav-link" %>
+    </li>
+    <li class="nav-real_estate">
+      <%= link_to "ログイン", new_public_customer_session_path, class: "nav-link" %>
+    </li>
+   <% end %>
+  </ul>
+  </div>
+  </header>
+</nav>

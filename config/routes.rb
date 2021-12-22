@@ -33,6 +33,12 @@ Rails.application.routes.draw do
         patch 'customers/out' => 'customers#out'
       end
     end
+    resources :contacts, only: [:new, :create] do
+      post 'contacts/confirm', to: 'contacts#confirm', as: 'confirm'
+      post 'contacts/back', to: 'contacts#back', as: 'back'
+      get 'done', to: 'contacts#done', as: 'done'
+      end
+      
      resources :addresses
      resources :searches
     get "search" => "searches#search"
@@ -52,6 +58,7 @@ Rails.application.routes.draw do
   
   #genres
   namespace :public do
+    resources :notifications, only: :index
     resources :customers do
     resources :relationships, only: [:create, :destroy] do
        get 'followings' => 'relationships#followings', as: 'followings'
@@ -71,6 +78,11 @@ Rails.application.routes.draw do
     resources :favorites , only: [:create , :destroy]
     end
     resources :negotiates, only:[:index, :edit, :create, :update]
+    resources :cart_real_estates, only:[:index, :create, :update, :destroy] do
+    collection do
+      delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+    end
+  end
     resources :orders, only:[:index, :show, :update]
     resources :order_real_estates, only:[:index, :update] do
       collection do

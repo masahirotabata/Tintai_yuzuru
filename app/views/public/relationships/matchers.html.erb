@@ -6,27 +6,32 @@
     <div class="row justify-content-center">
       <% @matchers.each do |match| %>
       <div class="one-post card w-100">
-        <%= link_to  public_order_real_estate_path(match) do %>
+        <%= link_to  public_customer_path(match) do %>
         <p class="caption h4">賃貸物件投稿者:<%= match.last_name %></p>さん
         <div class="d-flex">
           <tr><%= attachment_image_tag(@following_tag, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
           <h4 class="ml-5"><%#= following.profile_image %></h4>
           
+          <% end %>
+             <% end %>
+          
            <%#= attachment_image_tag @real_estates, :image, :fill, 200, 200, fallback: "no-image.jpg" %>
+           <% @matchers.each do |match| %>
         </div>
         <div class='col'>
           <% match.real_estates.each do |real_estate| %>
-          <p class='cake_name'><%#= match.real_estate.real_estate_name %></p>
+          <p class='cake_name'>.      
+                                       <%= simple_format( real_estate.real_estate_name ) %></p>
           <p class='cake_introduction'><%= simple_format( real_estate.detail ) %></p>
-          <p>価格:¥<%#= @real_estate.add_tax_price.to_s(:delimited) %>(税込)</p>
-          <%#= form_with model: @cart_real_estate, url: cart_real_estates_path, method: :post do |f| %>
+          <p>価格:¥<%= real_estate.offer_price %>(税込)</p>
+          <%= form_with model: @cart_real_estate, url: public_order_real_estates_path, method: :post do |f| %>
             <!--顧客情報送信フィールド-->
-            <%#= f.hidden_field :real_estate_id, value: real_estate.id %>
-            <%#= f.hidden_field :customer_id, value: current_customer.id %>
+            <%= f.hidden_field :real_estate_id, value: real_estate.id %>
+            <%= f.hidden_field :customer_id, value: current_customer.id %>
             <!--購入数のセレクトボックス-->
             <%#= f.select :pieces, options_for_select(1).to_a) %>
-            <%#= f.submit "物件を交渉カートに入れる" %>
-            <%# end %>
+            <%= f.submit "物件を交渉カートに入れる" %>
+            <% end %>
              <% end %>
              <% end %>
-           <% end %>
+             

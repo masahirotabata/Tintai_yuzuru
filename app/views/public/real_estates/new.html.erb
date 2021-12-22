@@ -1,3 +1,69 @@
-<%= form_for @prefecture, method: :post do |f| %>
- <%= f.select :prefecture, Prefecture.ride_areas.keys, {} %>
+<h1>物件情報を登録してください。</h1>
+
+<%= form_with model: @real_estate, url:public_real_estates_path, local: true do |f| %>
+
+  <div class="form-group row">
+     <%= f.label :real_estate_name, "賃貸物件名を入力してください" %>
+    <%= f.text_field :real_estate_name, placeholder: "賃貸物件名" %>
+  </div>
+  
+  <div class="form-group row">
+    <%= f.label :detail, "賃貸物件説明" %>
+    <%= f.text_area :detail, placeholder: "ここに説明文を入力します" %>
+  </div>
+  
+  <%= form_for @area, method: :post do |f| %>
+ <%= f.select :prefecture, Area.real_estate_areas.keys, {} %>
 <% end %>
+
+  <div class="form-group row">
+    <%= f.label :category_id, "ジャンル" %>
+    <%= f.collection_select :category_id, Category.all, :id, :category, {prompt: "選択してください"} %>
+  </div>
+  
+  <div class="form-group row">
+     <%= f.label :kinds,"マンション/アパートの種別を入力してください" %>
+     <%= f.select :kinds, [["マンション", "マンション"], ["アパート", "アパート"]], include_blank: "選択して下さい" %>
+  </div>
+  
+  <div class="form-group row">
+    <%= f.label :structure, "建築構造種別を入力してください" %>
+    <%= f.select :structure, [[" 鉄筋コンクリート造（RC造）", " 鉄筋コンクリート造（RC造）"], [" 重量鉄骨造（S造）", " 重量鉄骨造（S造）"],[" 軽量鉄骨造（S造）", " 軽量鉄骨造（S造））"], [" 木造（W造）", " 木造（W造）"],[" 鉄骨鉄筋コンクリート造（SRC造）", " 鉄骨鉄筋コンクリート造（SRC造）"],[" コンクリート充填鋼管構造（CFT造）", "コンクリート充填鋼管構造（CFT造）"], [" アルミ造（AL造）", "アルミ造（AL造）"]], include_blank: "選択して下さい" %>
+  </div>
+  
+  <div class="form-group row">
+    <%= f.label :date_of_construction, "建築年月日を入力してください" %>
+    <%= f.text_field:date_of_construction, placeholder: "建築年月日を入力してください" %>
+  </div>
+  
+
+  <div class="form-group row">
+    <%= f.label:floor_building, "何階建か入力してください" %>
+    <%= f.text_field:floor_building, placeholder: "ここに説明文を入力します"%>
+  </div>
+  
+  <div class="form-group row">
+     <%= f.label:parking, "駐車場の有無を選択してください" %>
+     <%= f.select :parking, [["駐車場:有", "駐車場:有"], ["駐車場:無", "駐車場:無"]], include_blank: "選択して下さい" %>
+  </div>
+  
+  <div class="form-group row">
+    <%= f.label:scheduled_to_move_out, "引っ越し予定日" %>
+    <%= f.text_field :scheduled_to_move_out, placeholder: "引っ越し予定日を入力してください" %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :offer_price, "税抜き価格" %>
+    <%= f.text_field :offer_price, placeholder: "賃貸物件の税別価格を入力して下さい" %>
+  </div>
+
+  <div class="form-group row">
+    <%= f.label :real_estate_status, "賃貸ステータス" %>
+    <!-- 後日enum追加 -->
+  </div>
+
+  <div class="form-group row">
+     <%= f.submit "新規登録", class:"btn btn-success" %>
+  </div>
+<% end %>
+

@@ -1,13 +1,49 @@
-<div class='container px-5 px-sm-0'>
 <% if @customer == current_customer %>
+  <%= render 'public/searches/search' %>
+  <%= render 'info', customer: @customer %>
+  <h2>自己紹介欄(物件投稿者）</h2>
+  <%= link_to('譲りたい物件一覧',public_real_estates_path) %> 
+  <%= link_to('新規物件投稿',new_public_real_estate_path ) %>
+  <%= link_to('交渉中ユーザー',public_negotiates_path ) %>
+  <%= link_to('マッチング成立ユーザー',public_customer_relationship_matchers_path(customer_id: @customer.id, relationship_id: @customer.id) ) %>
+  <%= link_to('仮契約成立物件',public_orders_path ) %>
+  
+  <%= link_to "自己紹介を記入する", edit_public_customer_path(@customer) %>
+  
+ 
+  <!--フォロー数: <#%=link_to(@real_estate.customer.relationships.count,admin_customer_path(current_customer)) %>-->
+  <!--フォロワー数: <#%= link_to(@real_estate.customer.reverse_of_relationships.count,admin_customer_path(@real_estate))  %>--
+    <%#= link_to "フォロー外す", public_customer_relationship_path(customer_id: @customer), method: :delete %>
+    <%#= link_to "フォローする", public_customer_relationships_path(customer_id: @customer), method: :post %>
+
+
+
+
+
+<% else %>
+
 <%= render 'public/searches/search' %>
+<%= render 'info', customer: @customer %>
    
 <%= link_to('譲りたい物件一覧',public_real_estates_path) %> 
 <%= link_to('交渉中ユーザ',public_negotiates_path ) %>
 <%= link_to('マッチング成立物件',public_customer_relationship_matchers_path(customer_id: @customer.id, relationship_id: @customer.id) ) %>
 <%= link_to('引っ越し待ち物件',public_order_real_estates_path ) %>
 
-<%= link_to "自己紹介を記入する", edit_public_customer_path(@customer) %>
+<% if current_customer.following?(@customer) %>
+  <%= link_to "フォロー外す", public_customer_relationship_path(@customer), method: :delete %>
+  <% else %>
+  <%= link_to "フォローする", public_customer_relationships_path(@customer), method: :post %>
+  <% end %>
+
+
+<tbody>
+  
+  <% end %>
+        </td>
+
+</tbody>
+     
 
 <div class='container px-5 px-sm-0'>
   <%# if @customer.id == current_customer.id %>
@@ -17,21 +53,9 @@
     <div class='col-md-3'>
       <h2>自己紹介欄(記入項目が多いほど、賃貸物件を譲ってもらいやすくなります。)</h2>
       
-      <%= render 'info', customer: @customer %>
      
       
 <!--      <div class='row'>-->
 <!--  <%#= link_to '',edit_customer_path(@customer.id),class: "btn btn-outline-secondary btn-block fas fa-customer-cog edit_customer_#{@customer.id}" %>-->
 <!--</div>-->
 
-<tbody>
-       
-  <% else @customer =! current_customer %>
-   <%= render 'info', customer: @customer %>
-  <%= link_to "フォローする", public_customer_relationship_followings_path(@customer), method: :post %>
-   <%= link_to "フォロー外す",public_customer_relationship_followers_path(@customer), method: :delete %>
-  <% end %>
-        </td>
-
-</tbody>
-     

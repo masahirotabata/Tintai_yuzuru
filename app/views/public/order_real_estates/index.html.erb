@@ -3,14 +3,15 @@
     <div class="row justify-content-center">
         
       <h3 class="font-weight-normal mt-5 mb-5">マッチングしているユーザ一覧です。物件投稿者と交渉することができます。</h3>
-      <% if  @matchers_customers %>
+      <% if@matchers_customers %>
     </div>
     <div class="row justify-content-center">
       <% @matchers_customers.each do |customer| %>
       <div class="one-post card w-100">
-        <%= link_to admin_customer_path(customer) do %>
-        <p class="caption h4"><%= customer.last_name %></p>
-         <p class="caption h4"><%= link_to customer.real_estates.real_estate_name,public_order_real_estates_path(customer) %></p>
+        <%= link_to public_customer_path(customer) do %>
+        <%= customer.last_name %></p>
+        <%= link_to customer.real_estates.real_estate_name,public_order_real_estates_path(customer) %></p>
+         <% end %>
         <div class="d-flex">
           <tr><%#= attachment_image_tag(@customer_tag, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
           <h4 class="ml-5"><%#= customer.profile_image %></h4>

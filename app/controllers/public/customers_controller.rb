@@ -1,6 +1,17 @@
 class Public::CustomersController < ApplicationController
     
     def show
+        
+    #admin側だった記述
+    if @customer != current_customer
+    @customer = Customer.find(params[:id])
+    @real_estates = RealEstate.where(customer_id: @customer.id)
+    # @real_estate = RealEstate.find(params[:id])
+    else
+    @customer = current_customer
+    end
+    
+    #customer側だった記述
     @customer = Customer.find(params[:id])
     #customerのcustomerの内、いいねされたものを絞り込
     @relationship = Relationship.new
@@ -60,7 +71,7 @@ class Public::CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(:jobs,:seriousness,:moving_schedule)
+    params.require(:customer).permit(:email, :jobs,:first_name, :last_name, :first_name_kana, :last_name_kana, :postal_code, :address, :tel, :jobs, :seriousness, :seriousness,:moving_date, :moving_schedule)
   end
-   
+ 
 end
