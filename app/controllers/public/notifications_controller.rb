@@ -1,5 +1,5 @@
 class Public::NotificationsController < ApplicationController
-    
+
     def index
       #current_userの投稿に紐づいた通知一覧
         @notifications = current_user.passive_notifications
@@ -14,7 +14,5 @@ class Public::NotificationsController < ApplicationController
         @notifications = current_user.passive_notifications.destroy_all
         redirect_to users_notifications_path
     end
-
-end
 
 end
