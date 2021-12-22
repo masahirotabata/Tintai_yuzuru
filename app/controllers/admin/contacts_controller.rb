@@ -51,4 +51,3 @@ class Admin::ContactsController < ApplicationController
   end
 end
 
-end
