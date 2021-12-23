@@ -19,22 +19,21 @@
       <% end %>
       <% end %>
       </div>
-      <% elsif %>
+      <% elsif @follwers %>
       
       フォローされているユーザー
-      <% if @followers %>
       <% @followers.each do |follower| %>
       <div class="one-post card w-100">
         <%= link_to admin_customer_path(followers) do %>
         <p class="caption h4"><%= followers.email %></p>
       
-      フォローされているユーザーはいません。
+      フォロー、もしくはフォローされているユーザーはいません。
       <% end %>
       <% end %>
       <% else %>
       フォロー、もしくはフォローされているユーザーはいません。
       <% end %>
-     <% end %>
+     
     </div>
   </div>
 </div>

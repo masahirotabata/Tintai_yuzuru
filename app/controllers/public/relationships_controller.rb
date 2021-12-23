@@ -27,7 +27,7 @@ class Public::RelationshipsController < ApplicationController
       redirect_to public_customer_path(@customer)
     end
      #通知の作成
-     @current_customer.create_notification_follow!(current_user)
+     @current_customer.create_notification_follow!(current_customer)
     
   end
 

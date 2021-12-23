@@ -12,9 +12,8 @@
     <%= f.text_area :detail, placeholder: "ここに説明文を入力します" %>
   </div>
   
-  <%= form_for @area, method: :post do |f| %>
- <%= f.select :prefecture, Area.real_estate_areas.keys, {} %>
-<% end %>
+  
+ 都道府県選択<%= f.select :real_estate_erea, Area.real_estate_ereas.keys, {class: 'Areas'} %>
 
   <div class="form-group row">
     <%= f.label :category_id, "ジャンル" %>

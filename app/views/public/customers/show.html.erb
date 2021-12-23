@@ -1,5 +1,5 @@
 <% if @customer == current_customer %>
-  <%= render 'public/searches/search' %>
+  <%= render 'public/searches/form' %>
   <%= render 'info', customer: @customer %>
   <h2>自己紹介欄(物件投稿者）</h2>
   <%= link_to('譲りたい物件一覧',public_real_estates_path) %> 
@@ -22,12 +22,12 @@
 
 <% else %>
 
-<%= render 'public/searches/search' %>
+<%= render 'public/searches/form' %>
 <%= render 'info', customer: @customer %>
    
 <%= link_to('譲りたい物件一覧',public_real_estates_path) %> 
 <%= link_to('交渉中ユーザ',public_negotiates_path ) %>
-<%= link_to('マッチング成立物件',public_customer_relationship_matchers_path(customer_id: @customer.id, relationship_id: @customer.id) ) %>
+<%= link_to('マッチング成立ユーザー',public_customer_relationship_matchers_path(customer_id: @customer.id, relationship_id: @customer.id) ) %>
 <%= link_to('引っ越し待ち物件',public_order_real_estates_path ) %>
 
 <% if current_customer.following?(@customer) %>

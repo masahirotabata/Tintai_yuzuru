@@ -32,16 +32,16 @@
   <% else %>
 
     <li class="nav-real_estate">
-      <%= link_to "About", homes_about_path, class: "nav-link" %>
+      <%#= link_to "About", homes_about_path, class: "nav-link" %>
     </li>
     <li class="nav-real_estate">
-    <%= link_to "商品一覧", real_estates_path, class: "nav-link" %>
+    <%= link_to "商品一覧", public_real_estates_path, class: "nav-link" %>
     </li>
     <li class="nav-real_estate">
-      <%= link_to "新規登録", new_public_customer_registration_path, class: "nav-link" %>
+      <%= link_to "新規登録", new_customer_registration_path, class: "nav-link" %>
     </li>
     <li class="nav-real_estate">
-      <%= link_to "ログイン", new_public_customer_session_path, class: "nav-link" %>
+      <%= link_to "ログイン", new_customer_session_path, class: "nav-link" %>
     </li>
    <% end %>
   </ul>

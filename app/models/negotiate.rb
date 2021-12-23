@@ -1,8 +1,8 @@
 class Negotiate < ApplicationRecord
     
-  belongs_to Customer
-  belongs_to Real_estate
-  belongs_to Order
+  belongs_to :customer
+  belongs_to :real_estate
+  belongs_to :order
   belongs_to :follower, class_name: "Customer"
   belongs_to :followed, class_name: "Customer"
   belongs_to :following, class_name: "Customer",optional: true
@@ -19,16 +19,16 @@ has_many :passive_relationships, class_name: "Relationship", foreign_key: "follo
 has_many :followings, through: :active_relationships, source: :followed
 has_many :followers, through: :passive_relationships, source: :follower
  
-def follow(user_id)
-  relationships.create(followed_id: user_id)
+def follow(customer_id)
+  relationships.create(followed_id: customer_id)
 end
 # フォローを外すときの処理
-def unfollow(user_id)
-  relationships.find_by(followed_id: user_id).destroy
+def unfollow(customer_id)
+  relationships.find_by(followed_id: customer_id).destroy
 end
 # フォローしているか判定
-def following?(user)
- followings.include?(user)
+def following?(customer)
+ followings.include?(customer)
 end
 
 def matchers

@@ -40,7 +40,7 @@ class DeviseCreateCustomers < ActiveRecord::Migration[5.2]
      t.string :postal_code       
      t.string :address           
      t.string :tel
-      t.string :jobs   
+     t.string :jobs   
      t.string :seriousness     
      t.integer :moving_date
      t.boolean :is_deleted, default: false #false:有効会員　true:退会会員

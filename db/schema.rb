@@ -33,7 +33,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_065403) do
   end
 
   create_table "areas", force: :cascade do |t|
-    t.integer "real_estate_erea", default: 0, null: false
+    t.integer "real_estate_rea", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -104,8 +104,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_065403) do
   create_table "notifications", force: :cascade do |t|
     t.integer "visiter_id"
     t.integer "visited_id"
-    t.integer "item_id"
-    t.integer "comment_id"
+    t.integer "real_estate_id"
     t.string "action"
     t.boolean "checked", default: false, null: false
     t.datetime "created_at", null: false

@@ -4,6 +4,7 @@
       <h1 class="font-weight-normal mt-5 mb-5">マッチング一覧</h1>
     </div>
     <div class="row justify-content-center">
+      <% if @matchers.include?(current_customer) %>
       <% @matchers.each do |match| %>
       <div class="one-post card w-100">
         <%= link_to  public_customer_path(match) do %>
@@ -24,7 +25,7 @@
                                        <%= simple_format( real_estate.real_estate_name ) %></p>
           <p class='cake_introduction'><%= simple_format( real_estate.detail ) %></p>
           <p>価格:¥<%= real_estate.offer_price %>(税込)</p>
-          <%= form_with model: @cart_real_estate, url: public_order_real_estates_path, method: :post do |f| %>
+          <%= form_with model: @cart_real_estate, url: public_cart_real_estates_path, method: :post do |f| %>
             <!--顧客情報送信フィールド-->
             <%= f.hidden_field :real_estate_id, value: real_estate.id %>
             <%= f.hidden_field :customer_id, value: current_customer.id %>
@@ -34,4 +35,8 @@
             <% end %>
              <% end %>
              <% end %>
+             <% else %>
+             マッチングユーザーはいません。
+             <% end %>
+             
              

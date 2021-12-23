@@ -2,13 +2,14 @@ class Public::RealEstatesController < ApplicationController
     
   def new
     @real_estate = RealEstate.new
+    @area = Area.new
   end
   
   def create
-    
   #admin側だった記述
     @real_estate = RealEstate.new(real_estate_params)
     @real_estate.customer_id = current_customer.id
+    
      
     if @real_estate.save
       redirect_to public_customer_path(current_customer)

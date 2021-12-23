@@ -1,0 +1,29 @@
+<table>
+    <thead>
+        <tr>
+            <th>投稿者名</th>
+            <th>タイトル</th>
+            <th>本文</th>
+            <th></th>
+            <th></th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody id="real_estate">
+    <% real_estates.each do |real_estate| %>
+      <tr>
+        <td><%= real_estate.customer.name %></td>
+        <td><%= real_estate.title %></td>
+        <td><%= real_estate.body %></td>
+        <td><%= link_to "詳細", real_estate_path(real_estate) %></td>
+        <% if real_estate.customer == current_customer %>
+          <td><%= link_to "編集", edit_real_estate_path(real_estate) %></td>
+          <td><%= link_to "削除", real_estate_path(real_estate), method: :delete, remote: true %></td>
+        <% else %>
+          <td></td>
+          <td></td>
+        <% end %>
+      </tr>
+    <% end %>
+    </tbody>
+</table>

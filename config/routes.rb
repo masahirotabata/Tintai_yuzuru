@@ -58,8 +58,8 @@ Rails.application.routes.draw do
   
   #genres
   namespace :public do
-    resources :notifications, only: :index
     resources :customers do
+    resources :notifications, only: :index
     resources :relationships, only: [:create, :destroy] do
        get 'followings' => 'relationships#followings', as: 'followings'
         get 'followers' => 'relationships#followers', as: 'followers'
