@@ -1,33 +1,90 @@
-<h1>譲れる物件詳細ページです</h1>
+<% if @real_estate.customer == current_customer || signed_in?  %>
+<h3>譲れる物件詳細ページです</h3>
+<h3>物件投稿者をフォローしてマッチングすると、上記物件を交渉することができます。</h3>
+<table border ="1" >
+  <tr>
+    <th>入力項目</th>
+    <th>入力欄</th>
+  </tr>
+  <tr>
+    <td> 
+    物件名
+    </td>
+    <td>
+    <%= @real_estate.real_estate_name %>
+    </td>
+  </tr>
+  <tr>
+    <td> 
+    物件所在地
+    </td>
+    <td>
+    <%= @real_estate.area_id  %>
+    </td>
+  </tr><tr>
+    <td> 
+    最寄駅
+    </td>
+    <td>
+    <%= @real_estate.nearest_station %>
+    </td>
+  </tr><tr>
+    <td> 
+    種別
+    </td>
+    <td>
+    <%= @real_estate.kinds %>
+    </td>
+    </tr><tr>
+    <td> 
+    構造
+    </td>
+    <td>
+    <%= @real_estate.structure %>
+    </td>
+  </tr><tr>
+    <td> 
+    建築年月日
+    </td>
+    <td> 
+    <%= @real_estate.date_of_construction %>
+    </td> 
+    </tr><tr>
+    <td> 
+    階建て
+    </td> 
+    <td> 
+　　<%= @real_estate.floor_building %>
+　　</td> 
+　　</tr><tr>
+　　<td> 
+    駐車場
+    </td> 
+    <td> 
+　　<%= @real_estate.parking %>
+　　</td> 
+　　</tr><tr>
+　　<td> 
+    引っ越し予定日
+    </td> 
+    <td> 
+　　<%= @real_estate.scheduled_to_move_out %>
+　　</td> 
+　　</tr><tr>
+    現在の賃貸ステータス
+    </td> 
+    <td> 
+　　<%= @real_estate.real_estate_status %>
+　　</td> 
+    
+</table>
 
-物件名
-<%= @real_estate.real_estate_name %>
-物件所在地
-<%#= @real_estate.areas.real_estate_ereas %>
-最寄駅
-<%= @real_estate.nearest_station %>
-種別
-<%= @real_estate.kinds %>
-構造
-<%= @real_estate.structure %>
-建築年月日
-<%= @real_estate.date_of_construction %>
-階建て
-<%= @real_estate.floor_building %>
-駐車場
-<%= @real_estate.parking %>
-引っ越し予定日
-<%= @real_estate.scheduled_to_move_out %>
-譲る価格
-<%= @real_estate.offer_price %>
-現在の賃貸ステータス
-<%= @real_estate.real_estate_status %>
+
 
 <%#= link_to "物件投稿者",public_customer_path(@real_estate.customer_id) %>
 
 
-  <% if @real_estate.customer == current_customer || signed_in?  %>
-  <h1>物件投稿者をフォローしてマッチングすると、上記物件を交渉することができます。</h1>
+  
         フォロー数: <%=link_to(@customer.following.count,public_customer_relationships_path(current_customer)) %>
         フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_path(current_customer))  %>
   <% if current_customer.following?(@customer) %>
@@ -46,7 +103,7 @@
         <div class='col'>
          <%= @real_estate.real_estate_name %></p>
           <p class='cake_introduction'><%= simple_format( @real_estate.detail ) %></p>
-          <p>提供価格:¥<%#= @real_estate.tax_price.to_s(:delimited) %>(税込)</p>
+          <p>提供価格:¥<%= @real_estate.offer_price %>(税込)</p>
           <%= form_with model: @order_real_estate, url: public_order_real_estates_path, method: :post do |f| %>
             <!--顧客情報送信フィールド-->
             <%= f.hidden_field :real_estate_id, value: @real_estate.id %>

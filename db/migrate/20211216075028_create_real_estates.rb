@@ -3,8 +3,9 @@ class CreateRealEstates < ActiveRecord::Migration[5.2]
     create_table :real_estates do |t|
       t.integer :category_id
       t.integer :customer_id
-      t.integer :prefecture_id
+      t.integer :area_id
       t.string :real_estate_image_id
+      t.string :image_id
       t.string :detail
       t.string :real_estate_name
       t.string :nearest_station
@@ -17,6 +18,7 @@ class CreateRealEstates < ActiveRecord::Migration[5.2]
       t.string :offer_price
       t.string  :comments
       t.integer :real_estate_status
+      t.integer :image
 
       t.timestamps
     end

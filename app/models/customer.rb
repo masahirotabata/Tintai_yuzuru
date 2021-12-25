@@ -5,7 +5,7 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
          
  has_many :favorites
- has_many :order_real_estates
+ has_many :cart_real_estates
  has_many :real_estates
  has_many :areas
 # # 一覧画面で使う

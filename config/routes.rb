@@ -77,13 +77,20 @@ Rails.application.routes.draw do
     resources :real_estates, only:[:show,:new, :index, :create, :update] do
     resources :favorites , only: [:create , :destroy]
     end
-    resources :negotiates, only:[:index, :edit, :create, :update]
+    resources :negotiates, only:[:index, :edit , :create, :update]
     resources :cart_real_estates, only:[:index, :create, :update, :destroy] do
     collection do
-      delete 'cart_items/destroy_all' => 'cart_items#destroy_all'
+      delete 'public_cart_real_estates/destroy_all' => 'public_cart_real_estates#destroy_all'
     end
   end
-    resources :orders, only:[:index, :show, :update]
+      resources :orders, only:[:new, :index, :show, :create, :update] do
+      collection do
+      post 'confirm'  => 'orders#confirm' 
+      get ' complete' => 'orders#complete'
+      end
+      end
+      
+    
     resources :order_real_estates, only:[:index, :update] do
       collection do
         get 'orders_real_estates/complete' => 'orders_real_estates#complete'

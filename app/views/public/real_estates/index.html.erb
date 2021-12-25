@@ -41,7 +41,7 @@
         <div class='col'>
           <p class='cake_name'><%#= real_estate.real_estate_name %></p>
           <p class='cake_introduction'><%#= simple_format( real_estate.detail ) %></p>
-          <p>提供価格:¥<%#= real_estate.add_tax_price.to_s(:delimited) %>(税込)</p>
+          <p>提供価格:¥<%= real_estate.offer_price %></p>
           <%#= form_with model: @order_real_estate, url: public_order_real_estates_path, method: :post do |f| %>
             <!--顧客情報送信フィールド-->
             <%#= f.hidden_field :real_estate_id, value: real_estate.id %>

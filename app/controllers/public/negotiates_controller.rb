@@ -4,7 +4,7 @@ class Public::NegotiatesController < ApplicationController
   end
    
   def index
-    customers = Customer.all
+    # customers = Customer.all
     @following = current_customer.following
   end
  

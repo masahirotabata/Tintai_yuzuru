@@ -1,29 +1,27 @@
 class Public::SearchesController < ApplicationController
-  
 
- def search
-    # viewのform_tagにて
-    # 選択したmodelの値を@modelに代入。
-    @model = params["model"]
-    # 選択した検索方法の値を@methodに代入。
-    @method = params["method"]
-    # 検索ワードを@contentに代入。
-    @content = params["content"]
-    # @model, @content, @methodを代入した、
-    # search_forを@recordsに代入。
-    @records = search_for(@model, @content, @method)
+  def index
+
+    @range = params[:range]
+#byebug
+    #if @range == "Area"
+      @real_estates = RealEstate.where(area_id: params[:range])
+    #else
+      #@books = RealEstate.looks(params[:search], params[:word])
+    #end
   end
 
   private
   def search_for(model, content, method)
-    # 選択したモデルがcustomerだったら
+ 
+    # 選択したモデルがareaだったら
     if model == 'area'
       # 選択した検索方法がが完全一致だったら
       if method == 'perfect'
-        customer.where(real_estate_erea: content)
+        Area.where(real_estate_erea: content)
       # 選択した検索方法がが部分一致だったら
       else
-        customer.where('real_estate_erea LIKE ?', '%'+content+'%')
+        Area.where('real_estate_erea LIKE ?', '%'+content+'%')
       end
     # 選択したモデルがpostだったら
     # elsif model == ''
@@ -35,4 +33,3 @@ class Public::SearchesController < ApplicationController
     end
   end
 end
-

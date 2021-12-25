@@ -1,29 +1,28 @@
 <!--<#%= render "shared/flash_message" %>-->
-<!--<div class="container" style="margin-bottom: 400px;">-->
-<!--  <div class="row">-->
-<!--    <div class="col">-->
-<!--      <div class="validates mb-5">-->
-<!--      </div>-->
-<!--      <h2>注文情報入力</h2>-->
-<!--      <#%= form_with model: @order,url: orders_confirm_orders_path, method: :post, local: true do |f| %>-->
-<!--        <div class="mt-5">-->
-<!--          <p>支払い方法</p>-->
-<!--          <#%= f.radio_button :payment_method, :クレジットカード, checked: true  %>-->
-<!--          <#%= f.label :payment_method, :クレジットカード, value: :クレジットカード %><br>-->
-<!--          <#%= f.radio_button :payment_method, :銀行振込 %>-->
-<!--          <#%= f.label :payment_method, :銀行振込, value: :銀行振込 %>-->
-<!--        </div>-->
-<!--       </div>-->
-<!--      </div>-->
-       
+<div class="container" style="margin-bottom: 400px;">
+  <div class="row">
+    <div class="col">
+      <div class="validates mb-5">
+      </div>
+      <h2>注文情報入力</h2>
+      <%= form_with model: @order,url: confirm_public_orders_path, method: :post, local: true do |f| %>
+        <div class="mt-5">
+          <p>支払い方法</p>
+          <%= f.radio_button :payment_method, :クレジットカード, checked: true  %>
+          <%= f.label :payment_method, :クレジットカード, value: :クレジットカード %><br>
+          <%= f.radio_button :payment_method, :銀行振込 %>
+          <%= f.label :payment_method, :銀行振込, value: :銀行振込 %>
+        </div>
+       </div>
+      </div>
           
-<!--       <div class="row">-->
-<!--         <div class="col-auto mx-auto mt-5">-->
-<!--         <#%= f.submit "確認画面に進む" %>-->
-<!--       </div>-->
-<!--    </div>-->
+       <div class="row">
+         <div class="col-auto mx-auto mt-5">
+         <%= f.submit "確認画面に進む" %>
+       </div>
+    </div>
          
-<!--      <#% end %>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
+      <% end %>
+    </div>
+  </div>
+</div>

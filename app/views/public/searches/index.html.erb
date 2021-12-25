@@ -1,4 +1,10 @@
-<% if @model == 'area' %>
+<% if @model == 'real_estate' %>
   <h3>【areasモデルの検索結果】検索ワード：<%= @content %></h3>
-  <%= render 'areas/index', areas: @records %>
+  <%= render 'public/real_estates/index', real_estates: @records %>
+<% end %>
+
+<% @real_estates.each do |real_estate| %>
+
+<%= real_estate.area_id %>
+
 <% end %>

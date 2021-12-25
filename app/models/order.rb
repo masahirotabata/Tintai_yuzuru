@@ -1,5 +1,5 @@
 class Order < ApplicationRecord
-    has_many :order_real_estates, dependent: :destroy
+    has_one :cart_real_estate, dependent: :destroy
     belongs_to :customer
 
   enum order_status: { waiting_for_deposit: 0, confirmed_payment: 1, in_production: 2, ready_to_delivery: 3, done: 4 }

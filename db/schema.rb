@@ -33,7 +33,9 @@ ActiveRecord::Schema.define(version: 2021_12_22_065403) do
   end
 
   create_table "areas", force: :cascade do |t|
-    t.integer "real_estate_rea", default: 0, null: false
+    t.integer "customer_id"
+    t.integer "real_estate_id"
+    t.integer "real_estate_erea", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -139,8 +141,9 @@ ActiveRecord::Schema.define(version: 2021_12_22_065403) do
   create_table "real_estates", force: :cascade do |t|
     t.integer "category_id"
     t.integer "customer_id"
-    t.integer "prefecture_id"
+    t.integer "area_id"
     t.string "real_estate_image_id"
+    t.string "image_id"
     t.string "detail"
     t.string "real_estate_name"
     t.string "nearest_station"
@@ -153,6 +156,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_065403) do
     t.string "offer_price"
     t.string "comments"
     t.integer "real_estate_status"
+    t.integer "image"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

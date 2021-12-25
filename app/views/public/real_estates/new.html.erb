@@ -2,18 +2,20 @@
 
 <%= form_with model: @real_estate, url:public_real_estates_path, local: true do |f| %>
 
-  <div class="form-group row">
-     <%= f.label :real_estate_name, "賃貸物件名を入力してください" %>
-    <%= f.text_field :real_estate_name, placeholder: "賃貸物件名" %>
-  </div>
-  
+
+  　<!--<div class="form-group row">-->
+   <!-- <%#= f.label :image, "賃貸物件画像" %>-->
+   <!-- <%#= f.attachment_field :image %>-->
+   <!-- </div>-->
+     
   <div class="form-group row">
     <%= f.label :detail, "賃貸物件説明" %>
-    <%= f.text_area :detail, placeholder: "ここに説明文を入力します" %>
+    <%= f.text_area :detail, placeholder: "ここに家賃など賃貸物件の説明文を入力します" %>
   </div>
   
   
- 都道府県選択<%= f.select :real_estate_erea, Area.real_estate_ereas.keys, {class: 'Areas'} %>
+ 都道府県選択<%= f.select :area_id, RealEstate.area_ids.keys, {class: 'Areas'} %>
+ 
 
   <div class="form-group row">
     <%= f.label :category_id, "ジャンル" %>
@@ -42,8 +44,6 @@
   </div>
   
   <div class="form-group row">
-     <%= f.label:parking, "駐車場の有無を選択してください" %>
-     <%= f.select :parking, [["駐車場:有", "駐車場:有"], ["駐車場:無", "駐車場:無"]], include_blank: "選択して下さい" %>
   </div>
   
   <div class="form-group row">
@@ -52,8 +52,8 @@
   </div>
 
   <div class="form-group row">
-    <%= f.label :offer_price, "税抜き価格" %>
-    <%= f.text_field :offer_price, placeholder: "賃貸物件の税別価格を入力して下さい" %>
+    <%= f.label :offer_price, "譲渡価格" %>
+    <%= f.text_field :offer_price, placeholder: "賃貸物件の譲渡価格を入力して下さい" %>
   </div>
 
   <div class="form-group row">

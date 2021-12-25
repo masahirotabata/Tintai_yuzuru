@@ -15,7 +15,7 @@
            <% if @orders %>
            <% @orders.each do |order| %>
     
-        <td><%= order.order_name %></td>
+        <td><%= order.customers.last_name %></td>
         <td><%= order.nearest_station %></td>
         <td><%= order.structure %></td>
         
@@ -27,4 +27,4 @@
           
           <% end %>
         <% end %>
-          
+         

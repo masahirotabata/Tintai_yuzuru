@@ -14,6 +14,7 @@ class Public::RelationshipsController < ApplicationController
   
   def matchers
     @matchers = followings & followers
+    @cart_real_estate = CartRealEstate.new
   end
   
   def create

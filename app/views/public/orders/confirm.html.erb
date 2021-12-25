@@ -7,42 +7,35 @@
         <div class="col-8">
           <table class="table table-bordered">
             <thead>
-              <tr>
-                <th>物件名</th>
-                <th>譲渡価格（税込）</th>
-                <th>小計</th>
-              </tr>
+              <th>物件名</th>
+              <th>譲渡価格（税込）</th>
+              <th>小計</th>
             </thead>
-            <tbody>
-              <% @order_real_estates.each do |order_real_estate| %>
-                <tr>
-                  <td>
-                    <%= link_to real_estate_path(order_real_estate) do %>
-                      <%= attachment_image_tag order_real_estate.real_estate , :image, :fill,50,50 ,fallback: "no_image.jpg",size: "50x50" %>
-                      <%= order_real_estate.real_estate.real_estate_name %>
-                    <% end %>
-                  </td>
-                  <td>
-                    <% @real_estate_price = order_real_estate.real_estate.price * 1.1 %>
-                    ¥<%= @real_estate_price.floor.to_s(:delimited) %>
-                  </td>
-                  <td>
-                    <%= order_real_estate.pieces %>
-                  </td>
-                </tr>
-              <% end %>
-            </tbody>
           </table>
+         
+            <%= form_with model: @order,url: public_orders_path, method: :post, local: true do |f| %>
+              <% @cart_real_estates.each do |cart_real_estate| %>
+                <%= link_to public_real_estate_path(cart_real_estate) do %>
+                  <%#= attachment_image_tag cart_real_estate.real_estate , :image, :fill,50,50 ,fallback: "no_image.jpg",size: "50x50" %>
+                  <%= cart_real_estate.real_estate.real_estate_name %>
+                 
+                <% end %>
+                <%= cart_real_estate.order %>
+                <!--<%#= cart_real_estate.order.payment_method %>-->
+              <% end %>
+  
+          <!--<%#= f.hidden_field :real_estate_id, value: real_estate.id %>-->
+          <!--<%#= f.hidden_field :customer_id, value: current_customer.id %>-->
+          <!--<%#= f.hidden_field :payment_method, value: @order.payment_method  %>-->
+          <!--<%#= f.hidden_field :commission, value: @order.commision  %>-->
+          <!--<%#= f.hidden_field :partner_name, value: @order.receiver_name %>-->
+          <!--<%#= f.hidden_field :moving_schedule_date, value: @order.delivery_address %>-->
+          <!--<%#= f.hidden_field :order_date, value: @order.shipping_postal_code %>-->
+              <%= f.submit "交渉を確定する" %>
+            <% end %>
+         
         </div>
-       
-      </div>
-      <div class="row">
-        <h3 class="mr-3">支払い方法</h3>
-        <p style="font-size: 20px;"><%= @order.payment_method %></p>
-      </div>
-          <%= f.submit "交渉を確定する" %>
-        </div>
-      <% end %>
+
     </div>
   </div>
 </div>
