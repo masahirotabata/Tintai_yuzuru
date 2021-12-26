@@ -1,7 +1,7 @@
 class CartRealEstate < ApplicationRecord
   belongs_to :customer
   belongs_to :real_estate
-  belongs_to :order
+  # belongs_to :order
   
 
   def sum_of_price

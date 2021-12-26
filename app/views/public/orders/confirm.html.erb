@@ -12,27 +12,15 @@
               <th>小計</th>
             </thead>
           </table>
+          
+          <%= @cart_real_estate.real_estate.real_estate_name %>
+          <%#= @cart_real_estate.real_estate.real_estate_areas %>
+          <%#= @cart_real_estate.real_estate.offer_price %>
+          <%#= @cart_real_estate.real_estate.payment_method %>
+          
+          <%= link_to("交渉を確定する",public_complete_order_path) %>
          
-            <%= form_with model: @order,url: public_orders_path, method: :post, local: true do |f| %>
-              <% @cart_real_estates.each do |cart_real_estate| %>
-                <%= link_to public_real_estate_path(cart_real_estate) do %>
-                  <%#= attachment_image_tag cart_real_estate.real_estate , :image, :fill,50,50 ,fallback: "no_image.jpg",size: "50x50" %>
-                  <%= cart_real_estate.real_estate.real_estate_name %>
-                 
-                <% end %>
-                <%= cart_real_estate.order %>
-                <!--<%#= cart_real_estate.order.payment_method %>-->
-              <% end %>
-  
-          <!--<%#= f.hidden_field :real_estate_id, value: real_estate.id %>-->
-          <!--<%#= f.hidden_field :customer_id, value: current_customer.id %>-->
-          <!--<%#= f.hidden_field :payment_method, value: @order.payment_method  %>-->
-          <!--<%#= f.hidden_field :commission, value: @order.commision  %>-->
-          <!--<%#= f.hidden_field :partner_name, value: @order.receiver_name %>-->
-          <!--<%#= f.hidden_field :moving_schedule_date, value: @order.delivery_address %>-->
-          <!--<%#= f.hidden_field :order_date, value: @order.shipping_postal_code %>-->
-              <%= f.submit "交渉を確定する" %>
-            <% end %>
+            
          
         </div>
 

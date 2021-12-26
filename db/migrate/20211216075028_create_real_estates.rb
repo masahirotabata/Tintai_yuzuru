@@ -6,6 +6,7 @@ class CreateRealEstates < ActiveRecord::Migration[5.2]
       t.integer :area_id
       t.string :real_estate_image_id
       t.string :image_id
+      t.integer :order_id
       t.string :detail
       t.string :real_estate_name
       t.string :nearest_station

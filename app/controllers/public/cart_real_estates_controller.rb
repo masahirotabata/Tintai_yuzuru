@@ -10,11 +10,15 @@ class Public::CartRealEstatesController < ApplicationController
  def create
   @cart_real_estate = CartRealEstate.new(cart_real_estate_params)
   @real_estate = @cart_real_estate.real_estate
- if @cart_real_estate.save
-      redirect_to cart_real_estates_path,notice: "カートに商品が入りました"
- else
-      redirect_to real_estate_path(@real_estate), notice: "商品の個数を指定してください"
- end
+#   byebug
+
+     if @cart_real_estate.save
+          redirect_to public_cart_real_estates_path,notice: "カートに商品が入りました"
+     else
+         render :new
+        # byebug
+        #   redirect_to public_real_estate_path(@real_estate), notice: "商品の個数を指定してください"
+     end
  end
 
  def update
@@ -48,8 +52,7 @@ class Public::CartRealEstatesController < ApplicationController
   end
 
  private
-
- def cart_real_estate_params
-   params.require(:cart_real_estate).permit(:customer_id, :real_estate_id, :pieces)
- end
+     def cart_real_estate_params
+       params.require(:cart_real_estate).permit(:customer_id, :real_estate_id)
+     end
 end

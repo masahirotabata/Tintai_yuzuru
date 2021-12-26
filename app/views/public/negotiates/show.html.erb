@@ -20,9 +20,9 @@
 <%= @real_estate.real_estate_status %>
 
 <% if @real_estate.customers.following?(real_estate) %>
-  <%= link_to "フォロー外す", admin_customer_relationship_path(@real_estate.customer_id), method: :delete %>
+  <%= link_to "フォロー外す", public_customer_relationship_path(@real_estate.customer_id), method: :delete %>
 <% else %>
-  <%= link_to "フォローする", admin_customer_relationships_path(@real_estate.customer_id), method: :post %>
+  <%= link_to "フォローする", public_customer_relationships_path(@real_estate.customer_id), method: :post %>
 <% end %>
  
  <% end %>

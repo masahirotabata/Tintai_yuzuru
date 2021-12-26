@@ -35,7 +35,9 @@
                 <!--合計金額表示記述-->
                 
               <td>
+                
                 <%= link_to "削除する", public_cart_real_estate_path(cart_real_estate), method: :delete, class: "btn", style: "background-color:#ecc4d4; color: red;" %>
+                <%= link_to "情報入力画面に進む", public_new_order_path(cart_real_estate), class: "btn mt-5", style: "background-color: #5cb85c; color: white;" %>
               </td>
             </tr>
             <% end %>
@@ -53,7 +55,6 @@
         </div>
         
         <div class="col text-center">
-          <%= link_to "情報入力画面に進む", new_public_order_path, class: "btn mt-5", style: "background-color: #5cb85c; color: white;" %>
         </div>
         </div>
       <!--カート内に商品が入っていなければ表示-->

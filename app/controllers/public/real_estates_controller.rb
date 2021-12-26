@@ -6,48 +6,41 @@ class Public::RealEstatesController < ApplicationController
   end
   
   def create
-  #admin側だった記述
     @real_estate = RealEstate.new(real_estate_params)
     @real_estate.customer_id = current_customer.id
-
-     
-    if @real_estate.save
+      if @real_estate.save
       redirect_to public_customer_path(current_customer)
-    else
+      else
       render 'new'
-    end
-   
-  
+      end
+  end
+    
+  def destroy
+    @real_estate = RealEstate.find(real_estate_id: params[:id])
+      if @real_estate.destroy
+        flash[:notice] = '投稿物件を解除しました'
+        redirect_to public_customer_path(@real_estate)
+      else
+      　flash[:notice] = '投稿物件を解除に失敗しました'
+      end
   end
   
-def show
+  def show
 #admin側だった記述
-@real_estate = RealEstate.find_by(id: params[:id])
-   
-@real_estate = RealEstate.find(params[:id])
-@customer = @real_estate.customer
+    @cart_real_estate = CartRealEstate.new  
+    @real_estate = RealEstate.find_by(id: params[:id])
+    @customer = @real_estate.customer
  
-end
+  end
 
   def index
-  
-   #admin側だった記述 
-   @real_estates = RealEstate.where(customer_id: current_customer)
-    # if @customers = customer.followers
-     
-       
-    # # else
-    # end
-  
-  @customer = current_customer
-  @real_estates = RealEstate.all
-  # @categories = Cutegory.all
-  
+    @real_estates = RealEstate.where(customer_id: current_customer)
+    @customer = current_customer
+    @real_estates = RealEstate.all
   end
 
     
-    private
-
+  private
   def real_estate_params
     params.require(:real_estate).permit(:category_id, :customer_id, :area_id, :real_estate_image_id,
     :detail, :real_estate_name, :image, :nearest_station,:kinds, :structure, :date_of_construction, :floor_building,

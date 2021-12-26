@@ -1,53 +1,41 @@
-<div class="container">
-  <div class="row mb-5 mx-1">
-    <div class="col mb-3">
-      <h3>交渉履歴詳細</h3>
-      <div class="row mt-5">
-        <div class="col-9">
-          <p>交渉情報</p>
+<div class="container" style="margin-bottom: 250px;">
+  <div class="row">
+    <div class="col">
+      <h2>交渉内容確認</h2>
+      <% @sum = 0 %>
+      <div class="row mt-3">
+        <div class="col-8">
           <table class="table table-bordered">
-            <tbody>
-              <tr>
-                <th bgcolor="#fce4ec">交渉日</th>
-                <td bgcolor="#fcf7f7">
-                  <%#= @order.created_at.strftime('%Y年%m月%d日') %>
-                </td>
-              </tr>
-            
-                <th bgcolor="#fce4ec">支払方法</th>
-                <td bgcolor="#fcf7f7">
-                  <%#= @order.payment_method %>
-                </td>
-              </tr>
-              <tr>
-                <th bgcolor="#fce4ec">ステータス</th>
-                <td bgcolor="#fcf7f7">
-                  <%#= @order.order_status_i18n  %>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
-        <div class="col-3">
-         
-      <div class="row mb-5">
-        <p>交渉内容</p>
-        <table class="table table-bordered">
-          <tbody>
-            <tr bgcolor="#fce4ec">
-              <th>賃貸物件名</th>
+            <thead>
+              <th>物件名</th>
               <th>譲渡価格（税込）</th>
-            </tr>
-            <%# @order.order_real_estates.each do |order_real_estate| %>
-              <tr bgcolor="#fcf7f7">
-                <td>
-                  <%#= order_real_estate.real_estate.real_estate_name %>
-                </td>
-              </tr>
-            <%# end %>
-          </tbody>
-        </table>
-      </div>
+              <th>小計</th>
+            </thead>
+          </table>
+         
+            <%= form_with model: @order,url: public_orders_path, method: :post, local: true do |f| %>
+              <% @cart_real_estates.each do |cart_real_estate| %>
+                <%= link_to public_real_estate_path(cart_real_estate) do %>
+                  <%#= attachment_image_tag cart_real_estate.real_estate , :image, :fill,50,50 ,fallback: "no_image.jpg",size: "50x50" %>
+                  <%= cart_real_estate.real_estate.real_estate_name %>
+                 
+                <% end %>
+                <%= cart_real_estate.order %>
+                <!--<%#= cart_real_estate.order.payment_method %>-->
+              <% end %>
+  
+          <!--<%#= f.hidden_field :real_estate_id, value: real_estate.id %>-->
+          <!--<%#= f.hidden_field :customer_id, value: current_customer.id %>-->
+          <!--<%#= f.hidden_field :payment_method, value: @order.payment_method  %>-->
+          <!--<%#= f.hidden_field :commission, value: @order.commision  %>-->
+          <!--<%#= f.hidden_field :partner_name, value: @order.receiver_name %>-->
+          <!--<%#= f.hidden_field :moving_schedule_date, value: @order.delivery_address %>-->
+          <!--<%#= f.hidden_field :order_date, value: @order.shipping_postal_code %>-->
+              <%= f.submit "交渉を確定する" %>
+            <% end %>
+         
+        </div>
+
     </div>
   </div>
 </div>

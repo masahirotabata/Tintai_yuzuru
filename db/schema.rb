@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_22_065403) do
+ActiveRecord::Schema.define(version: 2021_12_26_021655) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "area", null: false
@@ -55,16 +55,6 @@ ActiveRecord::Schema.define(version: 2021_12_22_065403) do
     t.datetime "updated_at", null: false
   end
 
-  create_table "contacts", force: :cascade do |t|
-    t.string "name", null: false
-    t.string "email", null: false
-    t.string "phone_number", null: false
-    t.integer "subject", default: 0, null: false
-    t.text "message", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -91,6 +81,13 @@ ActiveRecord::Schema.define(version: 2021_12_22_065403) do
   create_table "favorites", force: :cascade do |t|
     t.integer "customer_id"
     t.integer "real_estate_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "inquiries", force: :cascade do |t|
+    t.string "name"
+    t.string "message"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -144,6 +141,7 @@ ActiveRecord::Schema.define(version: 2021_12_22_065403) do
     t.integer "area_id"
     t.string "real_estate_image_id"
     t.string "image_id"
+    t.integer "order_id"
     t.string "detail"
     t.string "real_estate_name"
     t.string "nearest_station"

@@ -6,6 +6,7 @@ class RealEstate < ApplicationRecord
   has_many :orders
   has_one :areas
   has_many :notifications, dependent: :destroy
+  has_many :cart_real_estates
   
   
    # フォローをした、されたの関係
@@ -28,6 +29,10 @@ has_many :followers, through: :reverse_of_relationships, source: :follower
      福岡県:40,佐賀県:41,長崎県:42,熊本県:43,大分県:44,宮崎県:45,鹿児島県:46, 
      沖縄県:47
    }
+   
+   enum production_status: { unable: 0, waiting: 1, working: 2, completed: 3 }
+  enum order_status: { waiting_for_deposit: 0, confirmed_payment: 1, in_production: 2, ready_to_delivery: 3, done: 4 }
+
 
 # attachment :image
 

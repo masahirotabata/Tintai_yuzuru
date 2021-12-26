@@ -1,6 +1,6 @@
-<% if @real_estate.customer == current_customer || signed_in?  %>
+
 <h3>譲れる物件詳細ページです</h3>
-<h3>物件投稿者をフォローしてマッチングすると、上記物件を交渉することができます。</h3>
+<h3>物件投稿者をフォローしてマッチングすると、下記物件を交渉することができます。</h3>
 <table border ="1" >
   <tr>
     <th>入力項目</th>
@@ -84,7 +84,7 @@
 <%#= link_to "物件投稿者",public_customer_path(@real_estate.customer_id) %>
 
 
-  
+　<% if @real_estate.customer == current_customer || signed_in?  %>
         フォロー数: <%=link_to(@customer.following.count,public_customer_relationships_path(current_customer)) %>
         フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_path(current_customer))  %>
   <% if current_customer.following?(@customer) %>
@@ -104,14 +104,14 @@
          <%= @real_estate.real_estate_name %></p>
           <p class='cake_introduction'><%= simple_format( @real_estate.detail ) %></p>
           <p>提供価格:¥<%= @real_estate.offer_price %>(税込)</p>
-          <%= form_with model: @order_real_estate, url: public_order_real_estates_path, method: :post do |f| %>
+          <%= form_with model: @cart_real_estate, url: public_cart_real_estates_path, method: :post, local:true  do |f| %>
             <!--顧客情報送信フィールド-->
             <%= f.hidden_field :real_estate_id, value: @real_estate.id %>
             <%= f.hidden_field :customer_id, value: current_customer.id %>
             <!--購入数のセレクトボックス-->
-            <%= f.select :pieces, options_for_select((1..10).to_a) %>
-            <%= f.submit "交渉物件に加える" %>
+            <%= f.submit "交渉物件カートに加える" %>
         </div>
+       
      
          <% end %>
       </div>
@@ -120,6 +120,7 @@
 </div>
 <% else %>
  <% end %>
+ <%= link_to "削除する",  public_real_estate_path(@real_estate), method: :delete, class: "btn", style: "background-color:#ecc4d4; color: red;" %>
  <% end %>
        
    

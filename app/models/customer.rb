@@ -8,6 +8,7 @@ class Customer < ApplicationRecord
  has_many :cart_real_estates
  has_many :real_estates
  has_many :areas
+ has_many :orders, dependent: :destroy
 # # 一覧画面で使う
 # has_many :followings, through: :relationships, source: :followed
 # has_many :followers, through:  :reverse_of_relationships, source: :follower

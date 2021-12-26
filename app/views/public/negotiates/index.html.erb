@@ -9,7 +9,7 @@
       <% if @following %>
       <% @following.each do |following| %>
       <div class="one-post card w-100">
-        <%= link_to admin_customer_path(following) do %>
+        <%= link_to public_customer_path(following) do %>
         <p class="caption h4"><%= following.email %></p>
         <div class="d-flex">
           <tr><%#= attachment_image_tag(@customer_tag, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>

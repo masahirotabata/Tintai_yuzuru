@@ -74,7 +74,7 @@ Rails.application.routes.draw do
     get "search" => "searches#search"
     
     resources :categories, only:[:index, :edit, :create, :update]
-    resources :real_estates, only:[:show,:new, :index, :create, :update] do
+    resources :real_estates do
     resources :favorites , only: [:create , :destroy]
     end
     resources :negotiates, only:[:index, :edit , :create, :update]
@@ -83,11 +83,12 @@ Rails.application.routes.draw do
       delete 'public_cart_real_estates/destroy_all' => 'public_cart_real_estates#destroy_all'
     end
   end
-      resources :orders, only:[:new, :index, :show, :create, :update] do
-      collection do
-      post 'confirm'  => 'orders#confirm' 
-      get ' complete' => 'orders#complete'
-      end
+      
+      get 'orders/confirm'  => 'orders#confirm' 
+      get 'orders/complete',to: 'orders#complete', as: "complete_order"
+      get 'orders/new/:id',to: 'orders#new', as: "new_order"
+      post 'orders/create/:id',to: 'orders#create', as: "create_order"
+      resources :orders, only:[ :index, :show, :update] do
       end
       
     

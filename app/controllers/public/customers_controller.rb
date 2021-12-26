@@ -18,6 +18,11 @@ class Public::CustomersController < ApplicationController
     
     @favorites = Favorite.where(customer_id: @customer.id)
     
+    @notifications = current_customer.passive_notifications.page(params[:page]).per(3)
+    @notifications.where(checked: false).each do |notification|
+    notification.update_attributes(checked: true)
+    end
+    
     end
     
     
