@@ -97,7 +97,7 @@ Rails.application.routes.draw do
         get 'orders_real_estates/complete' => 'orders_real_estates#complete'
       end
     end
-
+  resources :inquiry, only: [:new, :create]
   #negotiates
   resources :negotiates, only:[:index, :create, :update, :destroy] do
     collection do

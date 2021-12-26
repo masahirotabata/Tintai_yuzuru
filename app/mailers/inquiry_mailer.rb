@@ -4,7 +4,7 @@ class InquiryMailer < ApplicationMailer
       # 追記
       mail(
         from: 'system@example.com',
-        to:   'manager@example.com',
+        to:   ENV['TOMAIL'],
         subject: 'お問い合わせ通知'
       )
     end
