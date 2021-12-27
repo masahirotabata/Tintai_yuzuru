@@ -1,12 +1,10 @@
 <p id="notice"><%= notice %></p>
-<div class="container">
+ <div class="container">
  <% if @customer == current_customer %>
-　 <div class="row">
   <%= render 'info', customer: @customer %>
   <h2>自己紹介欄(物件投稿者）</h2>
   
-  
- 
+      <div class="row">
       <div class="col-md-3">
         <h2><%= link_to('譲りたい物件一覧',public_real_estates_path) %> </h2>
         <p>賃貸物件に住んでいる方が市場に公開される前に譲りたいと考えている物件が表示されます。 </p>
@@ -60,7 +58,7 @@
         <p>お互いをフォローしあってマッチングすると、物件を譲ったり、譲ってもらえるようになります。リンク先では、マッチングが成立しているユーザー一覧が表示されます。</p>
       </div>
        <div class="col-md-3">
-        <h2> <%= link_to('引っ越し待ち物件',public_order_real_estates_path ) %></h2>
+        <h2> <%= link_to('引っ越し待ち物件',public_orders_path ) %></h2>
         <p>マッチング一覧から、仮交渉成立まで行った物件が表示されます。案件が不動産会社に渡され、賃貸物件の居住者の引越しが完了後、正式な契約手続きは不動産会社で行われます。</p>
       </div>
     </div>

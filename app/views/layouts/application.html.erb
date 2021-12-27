@@ -4,7 +4,7 @@
     <title>Tintaiyuzuru</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
+1
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -15,7 +15,7 @@
     <% else %>
       <%= render "public/shared/header" %>
     <% end %>
-  
+    
     <% if signed_in? && unchecked_notifications.any?  %>
       <i class="fa fa-circle" style="color: gold;"></i>
     <% end %>

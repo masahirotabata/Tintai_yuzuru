@@ -5,12 +5,12 @@
     </div>
     <div class="row justify-content-center">
       
+      <% if @following.any?  %>
       フォローしているユーザー
-      <% if @following %>
       <% @following.each do |following| %>
       <div class="one-post card w-100">
         <%= link_to public_customer_path(following) do %>
-        <p class="caption h4"><%= following.email %></p>
+        <p class="caption h4"><%= following.last_name %></p>
         <div class="d-flex">
           <tr><%#= attachment_image_tag(@customer_tag, :profile_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
           <h4 class="ml-5"><%#= customer.profile_image %></h4>
@@ -19,15 +19,13 @@
       <% end %>
       <% end %>
       </div>
-      <% elsif @follwers %>
+      <% elsif @followers %>
       
       フォローされているユーザー
       <% @followers.each do |follower| %>
       <div class="one-post card w-100">
-        <%= link_to admin_customer_path(followers) do %>
-        <p class="caption h4"><%= followers.email %></p>
-      
-      フォロー、もしくはフォローされているユーザーはいません。
+        <%= link_to public_customer_path(follower) do %>
+        <p class="caption h4"><%= follower.last_name %></p>
       <% end %>
       <% end %>
       <% else %>

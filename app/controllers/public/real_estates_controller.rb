@@ -16,7 +16,7 @@ class Public::RealEstatesController < ApplicationController
   end
     
   def destroy
-    @real_estate = RealEstate.find(real_estate_id: params[:id])
+    @real_estate = RealEstate.find_by(params[:id])
       if @real_estate.destroy
         flash[:notice] = '投稿物件を解除しました'
         redirect_to public_customer_path(@real_estate)

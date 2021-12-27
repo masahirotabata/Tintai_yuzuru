@@ -6,6 +6,7 @@ class Public::NegotiatesController < ApplicationController
   def index
     # customers = Customer.all
     @following = current_customer.following
+    @followers = current_customer.followers
   end
  
   def create

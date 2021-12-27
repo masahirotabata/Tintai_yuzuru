@@ -43,5 +43,14 @@ class Public::RelationshipsController < ApplicationController
       redirect_to public_customer_path(@customer)
     end
  
+  end 
+  
+  private
+
+  def customer_params
+    params.require(:relationship).permit(:email, :jobs,:first_name, :last_name, :first_name_kana, :last_name_kana, :postal_code, :address, :tel, :jobs, :seriousness, :seriousness,:moving_date, :moving_schedule)
   end
+ 
+  
+  
 end

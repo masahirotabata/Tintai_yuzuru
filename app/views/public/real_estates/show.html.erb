@@ -1,5 +1,8 @@
 
-<h3>譲れる物件詳細ページです</h3>
+<div class = "contents">
+<div class='row'>
+<div class='col-md-9 offset-md-1'>
+        <h3>譲れる物件詳細ページです</h3>
 <h3>物件投稿者をフォローしてマッチングすると、下記物件を交渉することができます。</h3>
 <table border ="1" >
   <tr>
@@ -93,14 +96,9 @@
   <%= link_to "フォローする", public_customer_relationships_path(@customer), method: :post %>
   <% end %>
   
- <% if @real_estate.customer.matching %>
+ <% if @real_estate.customer.matching.include?(current_customer)  %>
 
-    <div class='col-md-9 offset-md-1'>
-      <div class='row'>
-        <div class='col'>
-          <%#= attachment_image_tag @real_estate, :image, :fill, 200, 200, fallback: "no-image.jpg" %>
-        </div>
-        <div class='col'>
+    
          <%= @real_estate.real_estate_name %></p>
           <p class='cake_introduction'><%= simple_format( @real_estate.detail ) %></p>
           <p>提供価格:¥<%= @real_estate.offer_price %>(税込)</p>
@@ -122,7 +120,7 @@
  <% end %>
  <%= link_to "削除する",  public_real_estate_path(@real_estate), method: :delete, class: "btn", style: "background-color:#ecc4d4; color: red;" %>
  <% end %>
-       
+</div>       
    
  
     

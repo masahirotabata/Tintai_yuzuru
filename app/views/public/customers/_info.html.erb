@@ -6,7 +6,7 @@
 
   <tr>
 	  <th>名前</th>
-	  <th><%= @customer.email %></th>
+	  <th><%= @customer.last_name %></th>
 	  <th>職業</th>
 	  <th><%= @customer.jobs %></th>
 	  <th>引っ越しの真剣度合い</th>
@@ -23,8 +23,8 @@
 <tbody>
        
   <% if @customer %>
-        フォロー数: <%=link_to(@customer.following.count,public_customer_relationships_path(current_customer)) %>
-        フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_path(current_customer))  %>
+        フォロー数: <%=link_to(@customer.following.count,public_customer_relationship_followings_path(relationship_id: @customer, customer_id: @customer)) %>
+        フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_followers_path(relationship_id: @customer, customer_id: @customer))  %>
   <% end %>
           
 

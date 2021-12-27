@@ -123,11 +123,11 @@ ActiveRecord::Schema.define(version: 2021_12_26_021655) do
 
   create_table "orders", force: :cascade do |t|
     t.integer "customer_id"
+    t.string "partner_id"
     t.integer "real_estate_id"
     t.integer "negotiate_real_estate_id"
     t.integer "order_date"
     t.integer "moving_schedule_date"
-    t.string "partner_name"
     t.integer "payment_method"
     t.integer "commission"
     t.integer "order_status"

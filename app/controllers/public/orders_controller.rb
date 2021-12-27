@@ -7,6 +7,10 @@ class Public::OrdersController < ApplicationController
      # @real_estate = cart_real_estate.real_estate_id
      # @customer = current_customer
    end
+   
+   def index
+   @orders = Order.where(partner_id: current_customer)
+   end
 
    def create
      @cart_real_estate = CartRealEstate.find(params[:id])
@@ -71,7 +75,7 @@ class Public::OrdersController < ApplicationController
   private
 
   def order_params
-  params.permit(:customer_id, :real_estate_id, :negotiate_id, :order_date, :moving_schedule_date, :partner_name, :payment_method, :commission, :order_status)
+  params.require(:order).permit(:customer_id, :partner_id, :real_estate_id, :negotiate_id, :order_date, :moving_schedule_date, :payment_method, :commission, :order_status)
   end
   
 end

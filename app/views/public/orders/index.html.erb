@@ -1,30 +1,64 @@
+
+<div class = "container">
+     <h2>不動産依頼物件一覧</h2>
 <div class="row">
-
-    <h2>不動産依頼物件一覧</h2>
-
-       <table class="table">
-          <thead>
-            <tr class="table-head" style="background-color:#F5F5F5;">
-              <th scope="col">依頼日時</th>
+<table class="table">
+ <tr class="table-head" style="background-color:#F5F5F5;">
               <th scope="col">譲渡者</th>
-              <th scope="col">注文ステータス</th>
+              <th scope="col">物件名</th>
             </tr>
-          </thead>
-
-          <tbody>
            <% if @orders %>
            <% @orders.each do |order| %>
-    
-        <td><%= order.customers.last_name %></td>
-        <td><%= order.nearest_station %></td>
-        <td><%= order.structure %></td>
-        
+        <tr>
+        <td><%= order.customer.last_name %></td>
        
-<%= link_to('賃貸物件詳細', admin_order_path(order.id)) %>
+        <td><%= order.real_estate.real_estate_name %></td>
+        <td><%#= order.order_status %></td>
+        </tr>
+         <% end %>
+            <% end %>
+    </table>
+   </div>
+  </div>
 
-  </tbody>
-</table>
+
+<!--<div class = "contents">-->
+<!--<div class='row'>-->
+<!--<div class='col-md-9 offset-md-1'>-->
+<!--        <h3>譲れる物件詳細ページです</h3>-->
+<!--<h3>物件投稿者をフォローしてマッチングすると、下記物件を交渉することができます。</h3>-->
+<!--<table border ="1" >-->
+    
+<!--     <%# if @orders %>-->
+<!--　　 <%# @orders.each do |order| %>-->
+<!--  <tr class="table-head" style="background-color:#F5F5F5;">-->
+<!--    <th scope="col">譲渡者</th>-->
+<!--    <th scope="col">物件名</th>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <td> -->
+<!--     譲渡者-->
+<!--    </td>-->
+<!--    <td>-->
+<!--   <%#= order.customer.last_name %>-->
+<!--    </td>-->
+<!--  </tr>-->
+<!--  <tr>-->
+<!--    <td> -->
+<!--    物件名-->
+<!--    </td>-->
+<!--     <%# end %>-->
+<!--     <%# end %>-->
+     
+<!--     交渉成立した物件はありません。-->
+
+    
+<!--</table>-->
+
+<!--</div>-->
+<!--  </div>-->
+
+
           
-          <% end %>
-        <% end %>
+
          
