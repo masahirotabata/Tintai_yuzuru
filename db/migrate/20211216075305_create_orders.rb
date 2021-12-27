@@ -2,7 +2,7 @@ class CreateOrders < ActiveRecord::Migration[5.2]
  def change
     create_table :orders do |t|
       t.integer :customer_id
-      t.string  :partner_id
+      t.integer :partner_id
       t.integer :real_estate_id
       t.integer :negotiate_real_estate_id
       t.integer :order_date
