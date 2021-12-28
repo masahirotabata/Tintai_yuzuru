@@ -12,10 +12,10 @@ class CreateRealEstates < ActiveRecord::Migration[5.2]
       t.string :nearest_station
       t.string :kinds
       t.string :structure
-      t.integer :date_of_construction
+      t.string :date_of_construction
       t.string :floor_building
       t.string :parking
-      t.integer :scheduled_to_move_out
+      t.string :scheduled_to_move_out
       t.string :offer_price
       t.string  :comments
       t.integer :real_estate_status

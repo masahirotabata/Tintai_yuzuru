@@ -26,13 +26,6 @@
     </td>
   </tr><tr>
     <td> 
-    最寄駅
-    </td>
-    <td>
-    <%= @real_estate.nearest_station %>
-    </td>
-  </tr><tr>
-    <td> 
     種別
     </td>
     <td>
@@ -74,12 +67,16 @@
 　　<%= @real_estate.scheduled_to_move_out %>
 　　</td> 
 　　</tr><tr>
-    現在の賃貸ステータス
+　　
+　　　</tr><tr>
+　　<td> 
+    譲渡価格
     </td> 
     <td> 
-　　<%= @real_estate.real_estate_status %>
+　　<%= @real_estate.offer_price %>
 　　</td> 
-    
+　　</tr><tr>
+  
 </table>
 
 
@@ -110,6 +107,7 @@
             <%= f.submit "交渉物件カートに加える" %>
         </div>
        
+        <%= link_to "削除する",  public_real_estate_path(@real_estate), method: :delete, class: "btn", style: "background-color:#ecc4d4; color: red;" %>
      
          <% end %>
       </div>
@@ -118,7 +116,7 @@
 </div>
 <% else %>
  <% end %>
- <%= link_to "削除する",  public_real_estate_path(@real_estate), method: :delete, class: "btn", style: "background-color:#ecc4d4; color: red;" %>
+
  <% end %>
 </div>       
    

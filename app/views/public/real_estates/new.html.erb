@@ -54,34 +54,42 @@
     </td> 
     </tr><tr>
      <td> 
-    <%= f.label :detail, "建築年月日を入力してください" %>
+    <%= f.label :date_of_construction, "建築年月日を入力してください" %>
     </td>
     <td>
-     <%= f.text_area :detail, placeholder: "ここに建築年月日を入力します" %>
+     <%= f.text_area :date_of_construction, placeholder: "ここに建築年月日を入力します" %>
     </td>
 　　</tr><tr>
 　　<td> 
-    <%= f.label :detail, "何階建か入力してください" %>
+    <%= f.label :floor_building, "何階建か入力してください" %>
     </td>
     <td>
-     <%= f.text_area :detail, placeholder: "ここに何階建てかを入力します" %>
+     <%= f.text_area :floor_building, placeholder: "ここに何階建てかを入力します" %>
     </td>
 　　</tr><tr>
 　　　<td> 
-    <%= f.label :detail, "引っ越し予定日を入力してください" %>
+    <%= f.label :scheduled_to_move_out, "引っ越し予定日を入力してください" %>
     </td>
     <td>
-     <%= f.text_area :detail, placeholder: "ここに引っ越し予定日を入力します" %>
+     <%= f.text_area :scheduled_to_move_out, placeholder: "ここに引っ越し予定日を入力します" %>
+    </td>
+　　</tr><tr>
+　　
+　　 <td> 
+     <%= f.label :parking,"駐車場の有無を入力してください" %>
+    </td>
+　　 <td>
+    <%= f.select :parking, [["駐車場有", "駐車場有"], ["駐車場無", "駐車場無"]], include_blank: "選択して下さい" %>
     </td>
 　　</tr><tr>
 　　<td> 
-    <%= f.label :detail, "譲渡価格設定" %>
+     <%= f.label :offer_price,"譲渡価格を入力してください" %>
+    </td>
+　　 <td>
+   <%= f.text_area :offer_price, placeholder: "ここに譲渡価格を入力します" %>
     </td>
     <td>
-     <%= f.text_area :detail, placeholder: "ここに譲渡価格を入力します" %>
-    </td>
-    　</tr>
-    　<tr></tr>
+   
     </table>
 
  <%= f.submit "賃貸物件登録", class:"btn btn-success" %>
@@ -92,6 +100,7 @@
 
 
 
+ 
 
 
 
