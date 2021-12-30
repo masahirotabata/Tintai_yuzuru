@@ -6,25 +6,19 @@
       <div class="row mt-3">
         <div class="col-8">
           <table class="table table-bordered">
-       
-              <th>物件名</th>
-              <th>譲渡価格（税込）</th>
-          <tr>
-          <td>
-          <%= @cart_real_estate.real_estate.real_estate_name %>
-          </td>
-          <td>
-          <%= @cart_real_estate.real_estate.offer_price %>
-          </td>
-          </tr>
+            <th>物件名</th>
+            <th>譲渡価格（税込）</th>
+            <tr>
+            <td>
+            <%= @cart_real_estate.real_estate.real_estate_name %>
+            </td>
+            <td>
+            <%= @cart_real_estate.real_estate.offer_price %>
+            </td>
+            </tr>
           </table>
-          
           <%= link_to("交渉を確定する",public_complete_order_path) %>
-         
-            
-         
         </div>
-
+      </div>
     </div>
   </div>
-</div>

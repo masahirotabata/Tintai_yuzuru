@@ -1,66 +1,59 @@
 <p id="notice"><%= notice %></p>
- <div class="container">
- <% if @customer == current_customer %>
+<div class="container">
+  <% if @customer == current_customer %>
   <%= render 'info', customer: @customer %>
   <h2>自己紹介欄(物件投稿者）</h2>
-  
-      <div class="row">
-      <div class="col-md-3">
-        <h2><%= link_to('譲りたい物件一覧',public_real_estates_path) %> </h2>
-        <p>賃貸物件に住んでいる方が市場に公開される前に譲りたいと考えている物件が表示されます。 </p>
+  <div class="row">
+    <div class="col-md-3">
+    <h2><%= link_to('譲りたい物件一覧',public_real_estates_path) %> </h2>
+    <p>賃貸物件に住んでいる方が市場に公開される前に譲りたいと考えている物件が表示されます。 </p>
         <!--<p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>-->
-      </div>
-      <div class="col-md-3">
-        <h2><%= link_to('新規物件投稿',new_public_real_estate_path ) %></h2>
-        <p>引っ越す前に物件を譲る方を決めておけば、手数料をもらうことができます。
-        リンク先から、譲りたいと考えている物件を投稿することができます。 </p>
-      
-      </div>
-      <div class="col-md-3">
-        <h2><%= link_to('交渉中ユーザ',public_negotiates_path ) %></h2>
-        <p>あなたの物件を譲って欲しいと考えているユーザー、もしくは物件を譲って欲しいと考えているユーザー（あなたがフォローしているユーザー）が表示されます。</p>
-      </div>
-      <div class="col-md-3">
-        <h2><%= link_to('マッチング成立ユーザ',public_customer_relationship_matchers_path(customer_id: @customer.id, relationship_id: @customer.id) ) %></h2>
-        <p>お互いをフォローしあってマッチングすると、物件を譲ったり、譲ってもらえるようになります。リンク先では、マッチングが成立しているユーザー一覧が表示されます。</p>
-      </div>
-       <div class="col-md-3">
-        <h2> <%= link_to('仮契約成立物件',public_orders_path ) %> </h2>
-        <p>マッチング一覧から、仮交渉成立まで行った物件が表示されます。案件が不動産会社に渡され、賃貸物件の居住者の引越しが完了後、正式な契約手続きは不動産会社で行われます。</p>
-      </div>
     </div>
-   
-
-<% else %>
-
-<%= render 'info', customer: @customer %>
-
-<% if current_customer.following?(@customer) %>
+  <div class="col-md-3">
+    <h2><%= link_to('新規物件投稿',new_public_real_estate_path ) %></h2>
+    <p>引っ越す前に物件を譲る方を決めておけば、手数料をもらうことができます。
+        リンク先から、譲りたいと考えている物件を投稿することができます。 </p>
+  </div>
+  <div class="col-md-3">
+      <h2><%= link_to('交渉中ユーザ',public_negotiates_path ) %></h2>
+      <p>あなたの物件を譲って欲しいと考えているユーザー、もしくは物件を譲って欲しいと考えているユーザー（あなたがフォローしているユーザー）が表示されます。</p>
+  </div>
+  <div class="col-md-3">
+      <h2><%= link_to('マッチング成立ユーザ',public_customer_relationship_matchers_path(customer_id: @customer.id, relationship_id: @customer.id) ) %></h2>
+      <p>お互いをフォローしあってマッチングすると、物件を譲ったり、譲ってもらえるようになります。リンク先では、マッチングが成立しているユーザー一覧が表示されます。</p>
+  </div>
+  <div class="col-md-3">
+      <h2> <%= link_to('仮契約成立物件',public_orders_path ) %> </h2>
+      <p>マッチング一覧から、仮交渉成立まで行った物件が表示されます。案件が不動産会社に渡され、賃貸物件の居住者の引越しが完了後、正式な契約手続きは不動産会社で行われます。</p>
+  </div>
+  </div>
+</div>
+  <% else %>
+  <%= render 'info', customer: @customer %>
+  <% if current_customer.following?(@customer) %>
   <%= link_to "フォロー外す", public_customer_relationship_path(@customer), method: :delete %>
   <% else %>
   <%= link_to "フォローする", public_customer_relationships_path(@customer), method: :post %>
   <% end %>
-  
   <%= render 'public/notifications/notification', notifications: @notifications %>
-  
-     <div class="row">
-      <div class="col-md-3">
-        <h2><%= link_to('譲りたい物件一覧',public_real_estates_path) %>  </h2>
-        <p>賃貸物件に住んでいる方が市場に公開される前に譲りたいと考えている物件が表示されます。 </p>
+<div class="row">
+  <div class="col-md-3">
+    <h2><%= link_to('譲りたい物件一覧',public_real_estates_path) %>  </h2>
+    <p>賃貸物件に住んでいる方が市場に公開される前に譲りたいと考えている物件が表示されます。 </p>
         <!--<p><a class="btn btn-secondary" href="#" role="button">View details »</a></p>-->
-      </div>
-      <div class="col-md-3">
-        <h2><%= link_to('交渉中ユーザ',public_negotiates_path ) %></h2>
-        <p>あなたの物件を譲って欲しいと考えているユーザー、もしくは物件を譲って欲しいと考えているユーザー（あなたがフォローしているユーザー）が表示されます。</p>
-      </div>
-      <div class="col-md-3">
-        <h2><%= link_to('マッチング成立ユーザ',public_customer_relationship_matchers_path(customer_id: @customer.id, relationship_id: @customer.id) ) %></h2>
-        <p>お互いをフォローしあってマッチングすると、物件を譲ったり、譲ってもらえるようになります。リンク先では、マッチングが成立しているユーザー一覧が表示されます。</p>
-      </div>
-       <div class="col-md-3">
-        <h2> <%= link_to('引っ越し待ち物件',public_orders_path ) %></h2>
-        <p>マッチング一覧から、仮交渉成立まで行った物件が表示されます。案件が不動産会社に渡され、賃貸物件の居住者の引越しが完了後、正式な契約手続きは不動産会社で行われます。</p>
-      </div>
-    </div>
-   <% end %>
   </div>
+  <div class="col-md-3">
+    <h2><%= link_to('交渉中ユーザ',public_negotiates_path ) %></h2>
+    <p>あなたの物件を譲って欲しいと考えているユーザー、もしくは物件を譲って欲しいと考えているユーザー（あなたがフォローしているユーザー）が表示されます。</p>
+  </div>
+  <div class="col-md-3">
+    <h2><%= link_to('マッチング成立ユーザ',public_customer_relationship_matchers_path(customer_id: @customer.id, relationship_id: @customer.id) ) %></h2>
+    <p>お互いをフォローしあってマッチングすると、物件を譲ったり、譲ってもらえるようになります。リンク先では、マッチングが成立しているユーザー一覧が表示されます。</p>
+  </div>
+  <div class="col-md-3">
+    <h2> <%= link_to('引っ越し待ち物件',public_orders_path ) %></h2>
+    <p>マッチング一覧から、仮交渉成立まで行った物件が表示されます。案件が不動産会社に渡され、賃貸物件の居住者の引越しが完了後、正式な契約手続きは不動産会社で行われます。</p>
+  </div>
+</div>
+  <% end %>
+</div>

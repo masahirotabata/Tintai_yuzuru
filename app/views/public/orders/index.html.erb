@@ -1,29 +1,24 @@
 
 <div class = "container">
-     <h2>不動産依頼物件一覧</h2>
-<div class="row">
-<table class="table">
- <tr class="table-head" style="background-color:#F5F5F5;">
+    <h2>不動産依頼物件一覧</h2>
+    <div class="row">
+        <table class="table">
+            <tr class="table-head" style="background-color:#F5F5F5;">
               <th scope="col">譲渡者</th>
               <th scope="col">物件名</th>
             </tr>
-           <% if @orders %>
-           <% @orders.each do |order| %>
-        <tr>
-        <td><%= order.customer.last_name %></td>
-       
-        <td><%= order.real_estate.real_estate_name %></td>
-        
-        <td><%= order.real_estate.offer_price %></td>
-        
-        
-        
-        <td><%#= order.order_status %></td>
-        </tr>
-         <% end %>
+                <% if @orders %>
+                <% @orders.each do |order| %>
+            <tr>
+                <td><%= order.customer.last_name %></td>
+                <td><%= order.real_estate.real_estate_name %></td>
+                <td><%= order.real_estate.offer_price %></td>
+                <td><%#= order.order_status %></td>
+            </tr>
             <% end %>
-    </table>
-   </div>
+            <% end %>
+        </table>
+      </div>
   </div>
 
 

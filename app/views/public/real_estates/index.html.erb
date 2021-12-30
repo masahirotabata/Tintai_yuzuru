@@ -1,60 +1,37 @@
-  <div class = "contents">
-<div class='row'>
-<div class='col-md-9 offset-md-1'>
-  <table border ="1" >
-  <tr>
-    <th>譲れる物件一覧</th>
-    <th>譲れる物件の特徴</th>
-    <th>物件投稿者をフォローしてマッチングしていた場合、賃貸物件詳細に交渉リンクが表示されます。</th>
-  </tr>
-    <% @real_estates.each do |real_estate| %>
-    <tr>
-    <td>
-     <%= real_estate.real_estate_name %>
-    </td>
-    <td>
-   　<%= real_estate.nearest_station %>
-    </td>
-    <td> 
-    <%= link_to('賃貸物件詳細', public_real_estate_path(real_estate.id)) %>
-    </td>
-  </tr>
-    
-  　<% end %>  
-</table>
-
-  
-
-
-
-<%#= link_to "物件投稿者",public_customer_path(customer_id: real_estate.customer_id) %>
-   <% if current_customer != @customer %>
-        
-  <% if real_estate.following?(real_estate.customer_id) %>
-  <%= link_to "フォロー外す", public_customer_relationship_path(current_customer), method: :delete %>
-  <% else %>
-  <%= link_to "フォローする", public_customer_relationships_path(current_customer), method: :post %>
-  <% end %>
-  
-  <% else %>
-  
-  <% end %>
-  
-  
- 
-          <p class='cake_name'><%#= real_estate.real_estate_name %></p>
-          <p class='cake_introduction'><%#= simple_format( real_estate.detail ) %></p>
-          
-        
-        </div>
-    <%# end %>
-      </div>
+<div class = "contents">
+  <div class='row'>
+    <div class='col-md-9 offset-md-1'>
+      <table border ="1" >
+      <tr>
+      <th>譲れる物件一覧</th>
+      <th>譲れる物件の特徴</th>
+      <th>物件投稿者をフォローしてマッチングしていた場合、賃貸物件詳細に交渉リンクが表示されます。</th>
+      </tr>
+      <% @real_estates.each do |real_estate| %>
+      <tr>
+      <td>
+      <%= real_estate.real_estate_name %>
+      </td>
+      <td>
+      <%= real_estate.nearest_station %>
+      </td>
+      <td> 
+      <%= link_to('賃貸物件詳細', public_real_estate_path(real_estate.id)) %>
+      </td>
+      </tr>
+      <% end %>  
+      </table>
+      <%#= link_to "物件投稿者",public_customer_path(customer_id: real_estate.customer_id) %>
+      <% if current_customer != @customer %>
+      <% if real_estate.following?(real_estate.customer_id) %>
+      <%= link_to "フォロー外す", public_customer_relationship_path(current_customer), method: :delete %>
+      <% else %>
+      <%= link_to "フォローする", public_customer_relationships_path(current_customer), method: :post <<%></%></%><% end %>
+      <% else %>
+      <% end %>
+      <p class='cake_name'><%#= real_estate.real_estate_name %></p>
+      <p class='cake_introduction'><%#= simple_format( real_estate.detail ) %></p>
     </div>
+    <%# end %>
   </div>
 </div>
-<%# else %
-<%# end %>
-</div>
-</div>
-</div>
-

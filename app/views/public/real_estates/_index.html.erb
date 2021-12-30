@@ -17,11 +17,11 @@
         <td><%= real_estate.detail %></td>
         <td><%= link_to "詳細", public_real_estate_path(real_estate) %></td>
         <% if real_estate.customer == current_customer %>
-          <td><%= link_to "編集", edit_public_real_estate_path(real_estate) %></td>
-          <td><%= link_to "削除", public_real_estate_path(real_estate), method: :delete, remote: true %></td>
+        <td><%= link_to "編集", edit_public_real_estate_path(real_estate) %></td>
+        <td><%= link_to "削除", public_real_estate_path(real_estate), method: :delete, remote: true %></td>
         <% else %>
-          <td></td>
-          <td></td>
+        <td></td>
+        <td></td>
         <% end %>
       </tr>
     <% end %>
