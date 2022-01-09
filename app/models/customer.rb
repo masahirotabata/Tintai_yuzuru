@@ -4,14 +4,14 @@ class Customer < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
          
- has_many :favorites
- has_many :cart_real_estates
- has_many :real_estates
- has_many :areas
- has_many :orders, dependent: :destroy
-# # 一覧画面で使う
-# has_many :followings, through: :relationships, source: :followed
-# has_many :followers, through:  :reverse_of_relationships, source: :follower
+  has_many :favorites
+  has_many :cart_real_estates
+  has_many :real_estates
+  has_many :areas
+  has_many :orders, dependent: :destroy
+  # # 一覧画面で使う
+  # has_many :followings, through: :relationships, source: :followed
+  # has_many :followers, through:  :reverse_of_relationships, source: :follower
 
   has_many :active_relationships,
   class_name: 'Relationship',
@@ -34,10 +34,10 @@ class Customer < ApplicationRecord
   foreign_key: "visiter_id", 
   dependent: :destroy
   
-   has_many :passive_notifications, 
-   class_name: "Notification", 
-   foreign_key: "visited_id", 
-   dependent: :destroy
+  has_many :passive_notifications, 
+  class_name: "Notification", 
+  foreign_key: "visited_id", 
+  dependent: :destroy
   
   # has_many :reverse_of_relationships, class_name: 'Relationship', foreign_key: 'follow_id'
   # has_many :followers, through: :reverse_of_relationships, source: :customer
@@ -81,14 +81,14 @@ class Customer < ApplicationRecord
 
   #フォロー時の通知
  def create_notification_follow!(current_customer)
-    temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ",current_customer.id, id, 'follow'])
-    if temp.blank?
-      notification = current_customer.active_notifications.new(
-        visited_id: id,
-        action: 'follow'
+   temp = Notification.where(["visiter_id = ? and visited_id = ? and action = ? ",current_customer.id, id, 'follow'])
+   if temp.blank?
+     notification = current_customer.active_notifications.new(
+     visited_id: id,
+     action: 'follow'
       )
       notification.save if notification.valid?
-    end
+   end
  end
 
 end

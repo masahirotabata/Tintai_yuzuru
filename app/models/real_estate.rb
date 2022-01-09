@@ -9,13 +9,13 @@ class RealEstate < ApplicationRecord
   has_many :cart_real_estates
   
   
-   # フォローをした、されたの関係
-has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
-has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+  # フォローをした、されたの関係
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 
-# 一覧画面で使う
-has_many :followings, through: :relationships, source: :follow
-has_many :followers, through: :reverse_of_relationships, source: :follower
+  # 一覧画面で使う
+  has_many :followings, through: :relationships, source: :follow
+  has_many :followers, through: :reverse_of_relationships, source: :follower
 
   enum area_id:{
      "---":0,
@@ -30,46 +30,43 @@ has_many :followers, through: :reverse_of_relationships, source: :follower
      沖縄県:47
    }
    
-   enum production_status: { unable: 0, waiting: 1, working: 2, completed: 3 }
+  enum production_status: { unable: 0, waiting: 1, working: 2, completed: 3 }
   enum order_status: { waiting_for_deposit: 0, confirmed_payment: 1, in_production: 2, ready_to_delivery: 3, done: 4 }
 
 
-# attachment :image
-
-def follow(customer_id)
+  # attachment :image
+  def follow(customer_id)
   relationships.create(followed_id: customer_id)
-end
-# フォローを外すときの処理
-def unfollow(customer_id)
-  relationships.find_by(followed_id: customer_id).destroy
-end
-# 現在のユーザーがフォローしてたらtrueを返す
-  def following?(follow)
-    followings.include?(follow)
   end
-
-
-# def matchers
-#   followings & followers
-# end
+  # フォローを外すときの処理
+    def unfollow(customer_id)
+      relationships.find_by(followed_id: customer_id).destroy
+    end
+    # 現在のユーザーがフォローしてたらtrueを返す
+    def following?(follow)
+      followings.include?(follow)
+  end
+    # def matchers
+    #   followings & followers
+    # end
 
 	
  
     
     
- def self.looks(search, word)
-    if search == "perfect_match"
-      @real_estate = RealEstate.where(area_id:　word)
-    elsif search == "forward_match"
-      @real_estate = RealEstate.where("title LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @real_estate = RealEstate.where("title LIKE?","%#{word}")
-    elsif search == "partial_match"
-      @real_estate = RealEstate.where("title LIKE?","%#{word}%")
-    else
-      @real_estate = RealEstate.all
-    end
- end
+   def self.looks(search, word)
+      if search == "perfect_match"
+        @real_estate = RealEstate.where(area_id:　word)
+      elsif search == "forward_match"
+        @real_estate = RealEstate.where("title LIKE?","#{word}%")
+      elsif search == "backward_match"
+        @real_estate = RealEstate.where("title LIKE?","%#{word}")
+      elsif search == "partial_match"
+        @real_estate = RealEstate.where("title LIKE?","%#{word}%")
+      else
+        @real_estate = RealEstate.all
+      end
+   end
     
     
   #いいね機能の実装
@@ -81,18 +78,18 @@ end
     # すでに「フォロー」されているか検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and customer_id = ? and action = ? ", current_customer.id, customer_id, id, 'follow'])
     # フォローされていない場合のみ、通知レコードを作成
-    if temp.blank?
-      notification = current_customer.active_notifications.new(
-        customer_id: id,
-        visited_id: customer_id,
-        action: 'follow'
+   if temp.blank?
+     notification = current_customer.active_notifications.new(
+     customer_id: id,
+     visited_id: customer_id,
+     action: 'follow'
       )
-      # 自分に対するフォローの場合は、通知済みとする
-      if notification.visitor_id == notification.visited_id
-        notification.checked = true
-      end
-      notification.save if notification.valid?
-    end
+    # 自分に対するフォローの場合は、通知済みとする
+   if notification.visitor_id == notification.visited_id
+     notification.checked = true
+   end
+     notification.save if notification.valid?
+   end
   end
   
   #通知機能

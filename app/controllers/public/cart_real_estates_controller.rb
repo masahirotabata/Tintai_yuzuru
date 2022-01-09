@@ -39,9 +39,9 @@ class Public::CartRealEstatesController < ApplicationController
  end
 
  def destroy_all
-  if CartRealEstate.destroy_all
-    redirect_to request.referer, alert: "カート内を全て削除しました"
-  end
+   if CartRealEstate.destroy_all
+   redirect_to request.referer, alert: "カート内を全て削除しました"
+   end
  end
 
   def move_to_signed_in
@@ -52,7 +52,7 @@ class Public::CartRealEstatesController < ApplicationController
   end
 
  private
-     def cart_real_estate_params
-       params.require(:cart_real_estate).permit(:customer_id, :real_estate_id)
-     end
+    def cart_real_estate_params
+      params.require(:cart_real_estate).permit(:customer_id, :real_estate_id)
+    end
 end

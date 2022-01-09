@@ -1,5 +1,5 @@
 class Address < ApplicationRecord
- extend ActiveHash::Associations::ActiveRecordExtensions
+  extend ActiveHash::Associations::ActiveRecordExtensions
   belongs_to :perefecture
 
   validates :area, :text, presence: true
