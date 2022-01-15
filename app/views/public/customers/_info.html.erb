@@ -1,20 +1,33 @@
-<div class="col-md-4">
-  <div class="card mb-4 shadow-sm">
-  <tr><%= attachment_image_tag(@customer_tag,  :real_estates_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
-    <div class="card-body">
-    <p class="card-text"><table class='table'>
-    <tr>
-	  <th>名前</th>
-	  <th><%= @customer.last_name %></th>
-	  <th>職業</th>
-	  <th><%= @customer.jobs %></th>
-	  <th>引っ越しの真剣度合い</th>
-	  <th><%= @customer.seriousness %></th>
-    </tr>
+<div class = "contents">
+  <div class='row'>
+    <div class='col-md-10 offset-md-1'>
+         <%= attachment_image_tag(@customer_tag,  :real_estates_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
+        <table border ="1" >
+        <tr>
+        <td> 
+        名前
+        </td>
+        <td>
+        <%= @customer.last_name %>
+        </td>
+        </tr>
+        <tr>
+        <td> 
+        職業
+        </td>
+        <td>
+        <%= @customer.jobs %>
+        </td>
+        </tr><tr>
+        <td> 
+        引っ越しの真剣度合い
+        </td>
+        <td>
+      　<%= @customer.seriousness %>
+        </td>
+        </tr><tr>
+        
     </table>
-    <div class='row'>
-    <%#= link_to ''edit_customer_registration_path_path(@customer.id),class: "btn btn-outline-secondary btn-block fas fa-customer-cog edit_customer_#{@customer.id}" %>
-    </div>
     <tbody>
     <% if @customer %>
     フォロー数: <%=link_to(@customer.following.count,public_customer_relationship_followings_path(relationship_id: @customer, customer_id: @customer)) %>

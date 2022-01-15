@@ -22,11 +22,9 @@
   <li class="nav-real_estate">
     <%= link_to "賃貸物件一覧", public_real_estates_path, class: "nav-link" %>
   </li>
+  
   <li class="nav-real_estate">
-    <%= link_to "物件交渉カート", public_cart_real_estates_path, class: "nav-link" %>
-  </li>
-  <li class="nav-real_estate">
-    <%#= link_to "ログアウト", destroy_public_customer_session_path, method: :delete, class: "nav-link" %>
+    <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "nav-link" %>
   </li>
   <li class="nav-real_estate">
   <%= render 'public/searches/form' %>

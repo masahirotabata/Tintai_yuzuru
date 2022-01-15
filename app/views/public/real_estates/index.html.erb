@@ -26,8 +26,8 @@
       <% if real_estate.following?(real_estate.customer_id) %>
       <%= link_to "フォロー外す", public_customer_relationship_path(current_customer), method: :delete %>
       <% else %>
-      <%= link_to "フォローする", public_customer_relationships_path(current_customer), method: :post <<%></%></%><% end %>
-      <% else %>
+      <%= link_to "フォローする", public_customer_relationships_path(current_customer), method: :post %>
+      <% end %>
       <% end %>
       <p class='cake_name'><%#= real_estate.real_estate_name %></p>
       <p class='cake_introduction'><%#= simple_format( real_estate.detail ) %></p>

@@ -11,9 +11,9 @@
             <tr>
             <% if @customer_cart_real_estates.exists? %>
             <% @customer_cart_real_estates.each do |cart_real_estate| %> 
-            <%= link_to public_cart_real_estate_path(cart_real_estate.real_estate) do %>
+            <% if cart_real_estate.real_estate.present? %>
+            <%= link_to public_cart_real_estate_path(cart_real_estate.real_estate_id) do %>
                               <%#= attachment_image_tag public_cart_real_estates.real_estate , :image, :fill,50,50 ,fallback: "no_image.jpg",size: "50x50" %>
-            <%= cart_real_estate.real_estate.real_estate_name %>
             <td> 
             <%= cart_real_estate.real_estate.real_estate_name %>
             </td>
@@ -27,12 +27,13 @@
              <%= link_to "情報入力画面に進む", public_new_order_path(cart_real_estate), class: "btn mt-5", style: "background-color: #5cb85c; color: white;" %>
             </td>
             <td>
-            <%= link_to "交渉物件カートを空にする", public_cart_real_estates_destroy_all_public_cart_real_estates_path, method: :delete, class: "btn", style: "background-color: #b4d4d4; color: white;" %>
             <% end %>
             <% end %>
             </td>
-            <%= link_to "賃貸物件交渉を続ける", public_customer_relationship_matchers_path(customer_id: current_customer, relationship_id: current_customer), class: "btn mt-5", style: "background-color: #6599cc; color: white;" %>
+            <% end %>
             </tr>
+            <%= link_to "交渉物件カートを空にする", public_cart_real_estates_destroy_all_public_cart_real_estates_path, method: :delete, class: "btn", style: "background-color: #b4d4d4; color: white;" %>
+            <%= link_to "賃貸物件交渉を続ける", public_customer_relationship_matchers_path(customer_id: current_customer, relationship_id: current_customer), class: "btn mt-5", style: "background-color: #6599cc; color: white;" %>
         <% else %>    
         <p>現在、カート内に交渉物件は入っていません</p>
         <% end %>

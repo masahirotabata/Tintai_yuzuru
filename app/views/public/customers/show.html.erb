@@ -50,10 +50,6 @@
     <h2><%= link_to('マッチング成立ユーザ',public_customer_relationship_matchers_path(customer_id: @customer.id, relationship_id: @customer.id) ) %></h2>
     <p>お互いをフォローしあってマッチングすると、物件を譲ったり、譲ってもらえるようになります。リンク先では、マッチングが成立しているユーザー一覧が表示されます。</p>
   </div>
-  <div class="col-md-3">
-    <h2> <%= link_to('引っ越し待ち物件',public_orders_path ) %></h2>
-    <p>マッチング一覧から、仮交渉成立まで行った物件が表示されます。案件が不動産会社に渡され、賃貸物件の居住者の引越しが完了後、正式な契約手続きは不動産会社で行われます。</p>
-  </div>
 </div>
   <% end %>
 </div>

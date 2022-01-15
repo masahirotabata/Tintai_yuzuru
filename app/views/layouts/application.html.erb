@@ -4,7 +4,6 @@
     <title>Tintaiyuzuru</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-1
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
@@ -20,14 +19,13 @@
       <i class="fa fa-circle" style="color: gold;"></i>
     <% end %>
     
-    <li>
-      <%#= link_to "NOTICE", public_customer_notifications_path(customer_id: current_customer), class: "btn-default" %>
-    </li>
+   
     
     <%= yield %>
-      
+  </body>
+    
     <footer class="mt-4">
      <%= render "shared/footer" %>
     </footer>
-  </body>
+    
 </html>

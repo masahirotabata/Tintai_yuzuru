@@ -2,14 +2,14 @@
     <tbody>
       <% @areas.each do |area| %>
         <tr>
-         <td><%= real_estate.real_estate_name %></td>
-          <td><%= real_estate.detail %></td>
-          <td><%= real_estate.offer_price %></td>
+         <td><%= area.real_estate.real_estate_name %></td>
+          <td><%= area.real_estate.detail %></td>
+          <td><%= area.real_estate.offer_price %></td>
         </tr>
       <% end %>
     </tbody>
   <% else %>
-    <!--検索対象モデルがUserではない時(= 検索対象モデルがBookの時) -->
+    <!--検索対象モデルがAreaではない時 -->
     <tbody>
       <% @real_estates.each do |real_estate| %>
         <tr>

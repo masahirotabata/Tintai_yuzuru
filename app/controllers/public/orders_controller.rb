@@ -21,9 +21,8 @@ class Public::OrdersController < ApplicationController
   order_real_estate.real_estate_id = @cart_real_estate.real_estate_id
   order_real_estate.order_id = @order.id
   # order_real_estate.commision = cart_real_estate.real_estate.commission   #右辺上下逆
-  order_real_estate.save
   # end
-  redirect_to public_orders_confirm_path
+  redirect_to public_orders_confirm_path(order_id: @order.id)
   else
   @order = Order.new(order_params)
   render :new
@@ -39,8 +38,10 @@ class Public::OrdersController < ApplicationController
  # end
 
  def confirm
-  @cart_real_estate = Order.find_by(customer_id: current_customer.id, order_status: nil)
+ # @cart_real_estate = Order.find_by(customer_id: current_customer.id, order_status: nil)
+  @cart_real_estate = Order.find(params[:order_id])
   pp @cart_real_estate
+
   # @real_estate = RealEstate(current_customer.cart_real_estates.real_estate_id)
   #@cart_real_estate.real_estate.real_estate_name
   # else
@@ -52,8 +53,8 @@ class Public::OrdersController < ApplicationController
  end
 
  def complete
-  if !Order.find_by(customer_id: current_customer.id, order_status: nil).nil?
-   @order = Order.find_by(customer_id: current_customer.id, order_status: nil)
+  if !Order.find(params[:id]).nil?
+   @order = Order.find(params[:id])
   # @orders = Order.where(customer_id: current_customer.id, order_status: "done")
    @order.order_status = "done"
   @order.save

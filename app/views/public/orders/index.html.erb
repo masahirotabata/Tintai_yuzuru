@@ -7,15 +7,22 @@
               <th scope="col">譲渡者</th>
               <th scope="col">物件名</th>
             </tr>
-                <% if @orders %>
+                <% if @orders.exists? %>
                 <% @orders.each do |order| %>
+                <% if order.real_estate.present? %>
             <tr>
-                <td><%= order.customer.last_name %></td>
-                <td><%= order.real_estate.real_estate_name %></td>
-                <td><%= order.real_estate.offer_price %></td>
+            <td> 
+            <%= order.real_estate.real_estate_name %>
+            </td>
+            <td> 
+            <%= order.real_estate.offer_price %>
+            </td>
                 <td><%#= order.order_status %></td>
             </tr>
             <% end %>
+            <% end %>
+             <% else %>
+             引っ越し待ちの物件はありません。
             <% end %>
         </table>
       </div>
