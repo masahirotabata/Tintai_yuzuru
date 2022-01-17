@@ -10,7 +10,14 @@
         <th>入力欄</th>
         </tr>
         <tr>
-        <td> 
+        <td>
+        画像 
+        </td>
+        <td>
+        <%= attachment_image_tag @real_estate, :image, size: "100x100", format: 'jpeg' %>
+        </td>
+        <tr></tr>
+        <td>
         物件名
         </td>
         <td>
@@ -78,15 +85,27 @@
 　　    </tr><tr>
   
     </table>
+    <td><%= link_to '削除する', public_real_estate_path(@real_estate), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_real_estate_#{@real_estate.id}"%></td>
 
 
 
 <%#= link_to "物件投稿者",public_customer_path(@real_estate.customer_id) %>
+<td><% if @real_estate.favorited_by?(current_customer) %>
+   <%= link_to public_real_estate_favorite_path(@real_estate), method: :DELETE do  %>
+   <i class="fa fa-heart" aria-hidden="true" style="color: red;"></i>
+   <%= @real_estate.favorites.count %>like
+   <% end %>
+<% else %>
+  <%= link_to public_real_estate_favorites_path(@real_estate) , method: :POST do %>
+  <i class="fa fa-heart-o" aria-hidden="true"></i>
+  <%= @real_estate.favorites.count %>like
+  <% end %>
+<% end %></td>
 
 
       　<% if @real_estate.customer == current_customer || signed_in?  %>
-        フォロー数: <%=link_to(@customer.following.count,public_customer_relationships_path(current_customer)) %>
-        フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_path(current_customer))  %>
+         フォロー数: <%=link_to(@customer.following.count,public_customer_relationship_followings_path(relationship_id: @customer, customer_id: @customer)) %>
+         フォロワー数: <%= link_to(@customer.followers.count,public_customer_relationship_followers_path(relationship_id: @customer, customer_id: @customer))  %>
         <% if current_customer.following?(@customer) %>
         <%= link_to "フォロー外す", public_customer_relationship_path(@customer), method: :delete %>
         <% else %>
@@ -94,9 +113,6 @@
         <% end %>
   
         <% if @real_estate.customer.matching.include?(current_customer)  %>
-        <%= @real_estate.real_estate_name %></p>
-        <p class='cake_introduction'><%= simple_format( @real_estate.detail ) %></p>
-        <p>提供価格:¥<%= @real_estate.offer_price %>(税込)</p>
         <%= form_with model: @cart_real_estate, url: public_cart_real_estates_path, method: :post, local:true  do |f| %>
         <!--顧客情報送信フィールド-->
         <%= f.hidden_field :real_estate_id, value: @real_estate.id %>
@@ -104,7 +120,6 @@
         <!--購入数のセレクトボックス-->
         <%= f.submit "交渉物件カートに加える" %>
         </div>
-        <%= link_to "削除する",  public_real_estate_path(@real_estate), method: :delete, class: "btn", style: "background-color:#ecc4d4; color: red;" %>
         <% end %>
         </div>
       </div>

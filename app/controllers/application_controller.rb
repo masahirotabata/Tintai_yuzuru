@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
     redirect_to login_path
     end
   end
+  Refile.secret_key = '9953169e74f1595b3dff1c45e9c8275784e7f1bf81d3fb38f0a4e321807531492c18d93cf192e217972898440fa8ddce9b06c1c7f2a934d2223aa13992e1dc26'
 # before_action :authenticate_customer!,except: [:top,:about]
 
   add_flash_types :success, :info, :warning, :danger

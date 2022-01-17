@@ -30,13 +30,11 @@ class Public::RealEstatesController < ApplicationController
     @cart_real_estate = CartRealEstate.new  
     @real_estate = RealEstate.find_by(id: params[:id])
     @customer = @real_estate.customer
- 
   end
 
   def index
-    @real_estates = RealEstate.where(customer_id: current_customer)
+    @real_estates = RealEstate.includes(:favorited_customers).sort {|a,b| b.favorited_customers.size <=> a.favorited_customers.size}
     @customer = current_customer
-    @real_estates = RealEstate.all
   end
 
     

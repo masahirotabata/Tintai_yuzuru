@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_12_26_021655) do
+ActiveRecord::Schema.define(version: 2022_01_16_041830) do
 
   create_table "addresses", force: :cascade do |t|
     t.string "area", null: false
@@ -131,6 +131,15 @@ ActiveRecord::Schema.define(version: 2021_12_26_021655) do
     t.integer "payment_method"
     t.integer "commission"
     t.integer "order_status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "real_estate_comments", force: :cascade do |t|
+    t.integer "real_estate_id", null: false
+    t.integer "customer_id", null: false
+    t.float "rate", default: 0.0, null: false
+    t.text "comment", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

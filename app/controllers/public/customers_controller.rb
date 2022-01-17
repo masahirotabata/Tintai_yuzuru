@@ -10,9 +10,6 @@ class Public::CustomersController < ApplicationController
       else
       @customer = current_customer
       end
-    
-      #customer側だった記述
-      @customer = Customer.find(params[:id])
       #customerのcustomerの内、いいねされたものを絞り込
       @relationship = Relationship.new
       

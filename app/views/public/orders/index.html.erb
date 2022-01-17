@@ -17,7 +17,7 @@
             <td> 
             <%= order.real_estate.offer_price %>
             </td>
-                <td><%#= order.order_status %></td>
+                <td><%= link_to('評価',new_public_real_estate_real_estates_comment_path(order.real_estate.id)) %></td>
             </tr>
             <% end %>
             <% end %>

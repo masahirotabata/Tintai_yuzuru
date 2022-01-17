@@ -1,0 +1,23 @@
+<%= form_with(model: [@real_estate, @real_estates_comment], url: public_real_estate_real_estates_comment_index_path(@real_estate), local: true) do |f| %>
+    <%#= render 'layouts/error_messages', object: f.object %>
+
+    <%= f.text_area :comment, rows:'5', placeholder: "物件のコメント", class: "form-control form-control-sm" %>
+    <div id="rating-form">
+        <label>評価：</label>
+        <%# scoreNameの値をhidden_fieldでカラムに送っている %>
+        <%= f.hidden_field :rate, :value => '0' %>
+    </div>
+
+    <%= f.submit "投稿する" %>
+
+
+<script>
+    $(function(){
+      $('#rating-form').raty({
+        starOn: '<%= asset_path('star-on.png') %>',
+        starOff: '<%= asset_path('star-off.png') %>',
+        scoreName: 'real_estate_comment[rate]'
+      });
+    });
+</script>
+<% end %>

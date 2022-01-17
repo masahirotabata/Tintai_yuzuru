@@ -70,11 +70,13 @@ Rails.application.routes.draw do
         patch 'customers/out' => 'customers#out'
       end
     end
+    get "real_estates_comment" => "real_estates_comment#index"
    resources :searches
     get "search" => "searches#search"
     
     resources :categories, only:[:index, :edit, :create, :update]
     resources :real_estates do
+      resources :real_estates_comment
     resources :favorites , only: [:create , :destroy]
     end
     resources :negotiates, only:[:index, :edit , :create, :update]

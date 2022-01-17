@@ -9,6 +9,7 @@ class Customer < ApplicationRecord
   has_many :real_estates
   has_many :areas
   has_many :orders, dependent: :destroy
+  has_many :favorited_real_estate, through: :likes, source: :post
   # # 一覧画面で使う
   # has_many :followings, through: :relationships, source: :followed
   # has_many :followers, through:  :reverse_of_relationships, source: :follower
