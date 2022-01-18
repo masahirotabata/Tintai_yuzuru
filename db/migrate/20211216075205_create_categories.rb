@@ -1,5 +1,5 @@
 class CreateCategories < ActiveRecord::Migration[5.2]
- def change
+  def change
     create_table :categories do |t|
       t.integer :prefecture_id
       t.string :category_name

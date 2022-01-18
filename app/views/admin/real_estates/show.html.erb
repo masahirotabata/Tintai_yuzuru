@@ -1,6 +1,4 @@
 <h1>譲れる物件詳細ページです</h1>
-
-
 物件名
 <%= @real_estate.real_estate_name %>
 最寄駅
@@ -22,7 +20,7 @@
 現在の賃貸ステータス
 <%= @real_estate.real_estate_status %>
 <td><%= link_to '削除する', public_real_estate_path(@real_estate), method: :delete, data: { confirm: '本当に消しますか？' }, class: "btn btn-sm btn-danger destroy_real_estate_#{@real_estate.id}"%></td>
-  <% end %>
+<% end %>
   
 
      

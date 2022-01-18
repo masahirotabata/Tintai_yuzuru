@@ -1,5 +1,5 @@
 class CreateOrderRealEstates < ActiveRecord::Migration[5.2]
- def change
+  def change
     create_table :order_real_estates do |t|
       t.integer :order_id
       t.integer :real_estate_id

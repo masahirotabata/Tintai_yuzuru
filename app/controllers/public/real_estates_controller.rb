@@ -26,7 +26,7 @@ class Public::RealEstatesController < ApplicationController
   end
   
   def show
-#admin側だった記述
+    #admin側だった記述
     @cart_real_estate = CartRealEstate.new  
     @real_estate = RealEstate.find_by(id: params[:id])
     @customer = @real_estate.customer

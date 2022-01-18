@@ -1,103 +1,103 @@
 <div class = "contents">
-    <div class='row'>
-        <div class='col-md-9 offset-md-1'>
-            <h3>物件情報を登録してください。</h3>
-            <h3>入力情報が多いほど、譲渡希望者が増えやすくなります。</h3>
-            <%= form_with model: @real_estate, url:public_real_estates_path, local: true do |f| %>
-            <table border ="1" >
-            <tr>
-            <th>入力項目</th>
-            <th>入力欄</th>
-            </tr>
-            <tr>
-            <td> 
+  <div class='row'>
+    <div class='col-md-9 offset-md-1'>
+      <h3>物件情報を登録してください。</h3>
+      <h3>入力情報が多いほど、譲渡希望者が増えやすくなります。</h3>
+      <%= form_with model: @real_estate, url:public_real_estates_path, local: true do |f| %>
+      <table border ="1" >
+        <tr>
+          <th>入力項目</th>
+          <th>入力欄</th>
+        </tr>
+        <tr>
+          <td> 
             <%= f.label :real_estate_name, "賃貸物件名" %>
-            </td>
-            <td>
+          </td>
+          <td>
             <%= f.text_area :real_estate_name, placeholder: "ここに家賃など賃貸物件名を入力します" %>
-            </td>
-            </tr>
-            <tr>
-            <td>
-              画像選択
-            </td>
-            <td>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            画像選択
+          </td>
+          <td>
             <%= f.attachment_field :image %>
-            </td>
-            <tr></tr>
-            <td> 
+          </td>
+        <tr></tr>
+          <td> 
             <%= f.label :detail, "賃貸物件説明" %>
-            </td>
-            <td>
+          </td>
+          <td>
             <%= f.text_area :detail, placeholder: "ここに家賃など賃貸物件の説明文を入力します" %>
-            </td>
-            </tr><tr>
-            <td> 
+          </td>
+        </tr><tr>
+          <td> 
             都道府県選択
-            </td>
-            <td>
+          </td>
+          <td>
             <%= f.select :area_id, RealEstate.area_ids.keys, {class: 'Areas'} %>
-            </td>
-            </tr><tr>
-            <td> 
+          </td>
+        </tr><tr>
+          <td> 
             <%= f.label :category_id, "ジャンル" %>
-            </td>
-            <td>
+          </td>
+          <td>
             <%= f.collection_select :category_id, Category.all, :id, :category, {prompt: "選択してください"} %>
-            </td>
-            </tr><tr>
-            <td> 
+          </td>
+        </tr><tr>
+          <td> 
             <%= f.label :kinds,"マンション/アパートの種別を入力してください" %>
-            </td>
-            <td>
+          </td>
+          <td>
             <%= f.select :kinds, [["マンション", "マンション"], ["アパート", "アパート"]], include_blank: "選択して下さい" %>
-            </td>
-            </tr><tr>
-            <td> 
+          </td>
+        </tr><tr>
+          <td> 
             <%= f.label :structure, "建築構造種別を入力してください" %>
-            </td>
-            <td> 
+          </td>
+          <td> 
             <%= f.select :structure, [[" 鉄筋コンクリート造（RC造）", " 鉄筋コンクリート造（RC造）"], [" 重量鉄骨造（S造）", " 重量鉄骨造（S造）"],[" 軽量鉄骨造（S造）", " 軽量鉄骨造（S造））"], [" 木造（W造）", " 木造（W造）"],[" 鉄骨鉄筋コンクリート造（SRC造）", " 鉄骨鉄筋コンクリート造（SRC造）"],[" コンクリート充填鋼管構造（CFT造）", "コンクリート充填鋼管構造（CFT造）"], [" アルミ造（AL造）", "アルミ造（AL造）"]], include_blank: "選択して下さい" %>
-            </td> 
-            </tr><tr>
-            <td> 
+          </td> 
+        </tr><tr>
+          <td> 
             <%= f.label :date_of_construction, "建築年月日を入力してください" %>
-            </td>
-            <td>
+          </td>
+          <td>
             <%= f.text_area :date_of_construction, placeholder: "ここに建築年月日を入力します" %>
-            </td>
-　　        </tr><tr>
-　　        <td> 
+          </td>
+　　    </tr><tr>
+　　      <td> 
             <%= f.label :floor_building, "何階建か入力してください" %>
-            </td>
-            <td>
-             <%= f.text_area :floor_building, placeholder: "ここに何階建てかを入力します" %>
-            </td>
-　　        </tr><tr>
-　        　<td> 
+          </td>
+          <td>
+            <%= f.text_area :floor_building, placeholder: "ここに何階建てかを入力します" %>
+          </td>
+　　    </tr><tr>
+　        <td> 
             <%= f.label :scheduled_to_move_out, "引っ越し予定日を入力してください" %>
-            </td>
-            <td>
+          </td>
+          <td>
             <%= f.text_area :scheduled_to_move_out, placeholder: "ここに引っ越し予定日を入力します" %>
-            </td>
-　        　</tr><tr>
-　　        <td> 
+          </td>
+　       </tr><tr>
+　　      <td> 
             <%= f.label :parking,"駐車場の有無を入力してください" %>
-            </td>
-　　        <td>
+          </td>
+　　      <td>
             <%= f.select :parking, [["駐車場有", "駐車場有"], ["駐車場無", "駐車場無"]], include_blank: "選択して下さい" %>
-            </td>
-　        　</tr><tr>
-　　        <td> 
+          </td>
+　       </tr><tr>
+　　      <td> 
             <%= f.label :offer_price,"譲渡価格を入力してください" %>
-            </td>
-　　        <td>
+          </td>
+　　      <td>
             <%= f.text_area :offer_price, placeholder: "ここに譲渡価格を入力します" %>
-            </td>
-            <td>
-            </table>
-            <%= f.submit "賃貸物件登録", class:"btn btn-success" %>
-        </div>
+          </td>
+          <td>
+        </table>
+        <%= f.submit "賃貸物件登録", class:"btn btn-success" %>
+      </div>
         <% end %>
     </div>
 </div>

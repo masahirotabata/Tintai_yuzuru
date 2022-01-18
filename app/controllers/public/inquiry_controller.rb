@@ -11,13 +11,9 @@ class Public::InquiryController < ApplicationController
             render :new
         end
     end
-     private
-
+    
+    private
     def inquiry_params
-      params.require(:inquiry)
-          .permit(
-                  :name,
-                  :message
-                 )
+        params.require(:inquiry).permit(:name,:message)
     end
 end

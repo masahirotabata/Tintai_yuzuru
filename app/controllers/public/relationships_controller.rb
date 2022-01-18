@@ -1,15 +1,11 @@
 class Public::RelationshipsController < ApplicationController
     
   def followings
-  
-  @followings = Customer.find(params[:customer_id]).following
-    
+    @followings = Customer.find(params[:customer_id]).following
   end
   
   def followers
-    
-  @followers = Customer.find(params[:customer_id]).followers
-  
+    @followers = Customer.find(params[:customer_id]).followers
   end
   
   def matchers
@@ -20,13 +16,13 @@ class Public::RelationshipsController < ApplicationController
   def create
     @customer = Customer.find(params[:customer_id])
     following = current_customer.follow(@customer)
-    if following.save!
-      flash[:success] = 'ユーザーをフォローしました'
-      redirect_to public_customer_path(@customer)
-    else
-      flash.now[:alert] = 'ユーザーのフォローに失敗しました'
-      redirect_to public_customer_path(@customer)
-    end
+  if following.save!
+    flash[:success] = 'ユーザーをフォローしました'
+    redirect_to public_customer_path(@customer)
+  else
+    flash.now[:alert] = 'ユーザーのフォローに失敗しました'
+    redirect_to public_customer_path(@customer)
+  end
      #通知の作成
      @current_customer.create_notification_follow!(current_customer)
     
@@ -42,15 +38,11 @@ class Public::RelationshipsController < ApplicationController
       flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
       redirect_to public_customer_path(@customer)
     end
- 
   end 
   
   private
-
   def customer_params
     params.require(:relationship).permit(:email, :jobs,:first_name, :last_name, :first_name_kana, :last_name_kana, :postal_code, :address, :tel, :jobs, :seriousness, :seriousness,:moving_date, :moving_schedule)
   end
  
-  
-  
 end

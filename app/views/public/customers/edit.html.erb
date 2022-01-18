@@ -1,4 +1,4 @@
-  <%= form_with model: @customer, url: public_customer_path(@customer), local: true do |f| %>
+<%= form_with model: @customer, url: public_customer_path(@customer), local: true do |f| %>
 <div class="form-group row">
   <%= f.label :jobs, "職業" %>
   <%= f.text_field :jobs, placeholder: "職業を記述します" %>

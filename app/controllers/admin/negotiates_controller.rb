@@ -1,19 +1,19 @@
 class Admin::NegotiatesController < ApplicationController
   def show
-  @negotiate_real_estate_new = Relashionship.new
+    @negotiate_real_estate_new = Relashionship.new
   end
    
   def index
-  customers = Customer.all
-  if admin_signed_in?
-  @following = current_admin.following 
-  else
-  @following = current_customer.following 
-  end
+    customers = Customer.all
+    if admin_signed_in?
+      @following = current_admin.following 
+    else
+      @following = current_customer.following 
+    end
   end
  
   def create
-  if  @negotiate_real_estate.save(real_estate_params)
+    if  @negotiate_real_estate.save(real_estate_params)
     redirect_to real_estates_path
     else
     render 'new'

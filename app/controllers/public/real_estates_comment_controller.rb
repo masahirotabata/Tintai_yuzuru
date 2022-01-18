@@ -31,8 +31,8 @@ class Public::RealEstatesCommentController < ApplicationController
   
   
    private
-  def real_estate_comment_params
-    params.require(:real_estate_comment).permit(:real_estate_id, :customer_id, :rate, :comment)
-  end
-  
+    def real_estate_comment_params
+      params.require(:real_estate_comment).permit(:real_estate_id, :customer_id, :rate, :comment)
+    end
+    
 end

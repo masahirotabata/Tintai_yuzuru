@@ -1,36 +1,33 @@
 <% @real_estate_comments.each do |real_estate_comment| %>
-    <div class="pt-2 px-2" style="background-color: #fffffe; border: 2px solid #272343; border-radius: 2px;">
-        物件名:<%= real_estate_comment.real_estate.real_estate_name %>
-        <%# rateを表示 %>
-        <div id="review-rating_<%= real_estate_comment.id %>" data-score="<%= real_estate_comment.rate %>">評価：</div>
-        
-        
-        <div class="text-left">
-            <p>投稿者：<%= real_estate_comment.customer.last_name %></p>
-            <p><%= real_estate_comment.comment %></p>
-        </div>
-
-        <div class="text-right">
-            <p>
-                投稿日：<%= real_estate_comment.created_at.strftime('%Y/%m/%d') %> |
-                <% if real_estate_comment.customer == current_customer %>
-                    <%= link_to public_real_estate_real_estates_comment_path(real_estate_comment.real_estate, real_estate_comment), method: :delete, class: "btn btn-sm btn-danger" do %>
-                        コメント削除 <i class="fas fa-trash"></i>
-                    <% end %>
-                <% end %>
+  <div class="pt-2 px-2" style="background-color: #fffffe; border: 2px solid #272343; border-radius: 2px;">
+  物件名:<%= real_estate_comment.real_estate.real_estate_name %>
+  <%# rateを表示 %>
+    <div id="review-rating_<%= real_estate_comment.id %>" data-score="<%= real_estate_comment.rate %>">評価：</div>
+    <div class="text-left">
+      <p>投稿者：<%= real_estate_comment.customer.last_name %></p>
+      <p><%= real_estate_comment.comment %></p>
+    </div>
+      <div class="text-right">
+        <p>
+        投稿日：<%= real_estate_comment.created_at.strftime('%Y/%m/%d') %> |
+        <% if real_estate_comment.customer == current_customer %>
+          <%= link_to public_real_estate_real_estates_comment_path(real_estate_comment.real_estate, real_estate_comment), method: :delete, class: "btn btn-sm btn-danger" do %>
+          コメント削除 <i class="fas fa-trash"></i>
+        <% end %>
+<% end %>
             </p>
         </div>
     </div>
 
-    <div class="pb-2"></div>
+  <div class="pb-2"></div>
     <script>
       $(function(){
-      $('#review-rating_<%= real_estate_comment.id %>').raty({
-        starOn: '<%= asset_path('star-on.png') %>',
-        starOff: '<%= asset_path('star-off.png') %>',
-        readOnly: true, 
-        score: <%= real_estate_comment.rate %>
-      });
+        $('#review-rating_<%= real_estate_comment.id %>').raty({
+          starOn: '<%= asset_path('star-on.png') %>',
+          starOff: '<%= asset_path('star-off.png') %>',
+          readOnly: true, 
+          score: <%= real_estate_comment.rate %>
+        });
       });
     </script>
-<% end %>
+      <% end %>

@@ -2,15 +2,15 @@
   
 class Admin::RelationshipsController < ApplicationController
     
- def followings
+  def followings
   
-  @followings = Customer.find(params[:customer_id]).following
+    @followings = Customer.find(params[:customer_id]).following
     
   end
   
   def followers
     
-  @followers = Customer.find(params[:customer_id]).followers
+    @followers = Customer.find(params[:customer_id]).followers
   
   end
   
@@ -32,8 +32,7 @@ class Admin::RelationshipsController < ApplicationController
       flash.now[:alert] = 'ユーザーのフォロー解除に失敗しました'
       redirect_to admin_customer_path(@customer)
     end
- 
-end
+  end
 
   def destroy
     following = current_customer.unfollow(set_customer)

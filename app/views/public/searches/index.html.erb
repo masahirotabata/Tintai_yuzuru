@@ -2,22 +2,21 @@
     <tbody>
       <% @areas.each do |area| %>
         <tr>
-         <td><%= area.real_estate.real_estate_name %></td>
+          <td><%= area.real_estate.real_estate_name %></td>
           <td><%= area.real_estate.detail %></td>
           <td><%= area.real_estate.offer_price %></td>
         </tr>
       <% end %>
     </tbody>
-  <% else %>
-    <!--検索対象モデルがAreaではない時 -->
-    <tbody>
-      <% @real_estates.each do |real_estate| %>
-        <tr>
-          <td><%= link_to(real_estate.real_estate_name,public_real_estate_path(real_estate.id)) %></td>
-          <td><%= real_estate.detail %></td>
-          <td><%= real_estate.offer_price %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% end %>
-</table>
+<% else %>
+  <!--検索対象モデルがAreaではない時 -->
+  <tbody>
+    <% @real_estates.each do |real_estate| %>
+      <tr>
+        <td><%= link_to(real_estate.real_estate_name,public_real_estate_path(real_estate.id)) %></td>
+        <td><%= real_estate.detail %></td>
+        <td><%= real_estate.offer_price %></td>
+      </tr>
+    <% end %>
+  </tbody>
+<% end %>

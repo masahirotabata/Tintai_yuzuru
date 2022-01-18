@@ -1,32 +1,32 @@
 
 <div class = "container">
-    <h2>不動産依頼物件一覧</h2>
-    <div class="row">
-        <table class="table">
-            <tr class="table-head" style="background-color:#F5F5F5;">
-              <th scope="col">譲渡者</th>
-              <th scope="col">物件名</th>
-            </tr>
-                <% if @orders.exists? %>
-                <% @orders.each do |order| %>
-                <% if order.real_estate.present? %>
+  <h2>不動産依頼物件一覧</h2>
+  <div class="row">
+    <table class="table">
+      <tr class="table-head" style="background-color:#F5F5F5;">
+        <th scope="col">譲渡者</th>
+        <th scope="col">物件名</th>
+      </tr>
+      <% if @orders.exists? %>
+        <% @orders.each do |order| %>
+          <% if order.real_estate.present? %>
             <tr>
-            <td> 
-            <%= order.real_estate.real_estate_name %>
-            </td>
-            <td> 
-            <%= order.real_estate.offer_price %>
-            </td>
-                <td><%= link_to('評価',new_public_real_estate_real_estates_comment_path(order.real_estate.id)) %></td>
+              <td> 
+              <%= order.real_estate.real_estate_name %>
+              </td>
+              <td> 
+              <%= order.real_estate.offer_price %>
+              </td>
+              <td><%= link_to('評価',new_public_real_estate_real_estates_comment_path(order.real_estate.id)) %></td>
             </tr>
-            <% end %>
-            <% end %>
-             <% else %>
-             引っ越し待ちの物件はありません。
-            <% end %>
-        </table>
-      </div>
+          <% end %>
+        <% end %>
+      <% else %>
+          引っ越し待ちの物件はありません。
+      <% end %>
+    </table>
   </div>
+</div>
 
 
 <!--<div class = "contents">-->

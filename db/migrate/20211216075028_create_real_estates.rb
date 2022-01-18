@@ -1,5 +1,5 @@
 class CreateRealEstates < ActiveRecord::Migration[5.2]
-   def change
+  def change
     create_table :real_estates do |t|
       t.integer :category_id
       t.integer :customer_id

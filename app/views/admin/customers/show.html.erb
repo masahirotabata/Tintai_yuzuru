@@ -1,4 +1,3 @@
-
   <%= render 'public/searches/search' %>
   <h2>自己紹介欄(物件投稿者）</h2>
   <%= render 'info', customer: @customer %>
@@ -17,9 +16,9 @@
 　  <%= render 'info', customer: @customer %>
     フォロー数: <%=link_to(@customer.following.count,admin_customer_path(@customer)) %>
     フォロワー数: <%= link_to(@customer.followers.count,admin_customer_path(@customer))  %>
-   <%= link_to "フォロー外す", public_customer_relationship_path(current_customer), method: :delete %>
+     <%= link_to "フォロー外す", public_customer_relationship_path(current_customer), method: :delete %>
   <% else %>
-  <%= link_to "フォローする", public_customer_relationships_path(current_customer), method: :post %>
+    <%= link_to "フォローする", public_customer_relationships_path(current_customer), method: :post %>
   <% end %>
  
     <%#= link_to "フォロー外す", public_customer_relationship_path(customer_id: @customer), method: :delete %>

@@ -4,8 +4,8 @@
     <%= notification.visitor %>
     <% visiter = Customer.find(notification.visiter_id) %>
     <%# visited = notification.visited %>
-  <div class="col-md-6.mx-auto">
-  <!--.form-inline -->
+    <div class="col-md-6.mx-auto">
+    <!--.form-inline -->
     <span>
       <%= link_to public_customer_path(visiter) do %>
       <%= attachment_image_tag(@customer_tag,  :real_estates_image, :fill, 100, 100, fallback: "no_image.jpg") %>
@@ -15,14 +15,14 @@
       <% end %>
       <% case notification.action %>
       <% when 'follow' then %>
-      あなたをフォローしました
+        あなたをフォローしました
       <% when 'like' then %>
-      <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>にいいねしました
+        <%= link_to 'あなたの投稿', notification.post, style: "font-weight: bold;" %>にいいねしました
       <% end %>
-      <% end %>
+    <% end %>
       <!-- .small.text-muted.text-right
       = time_ago_in_words(notification.created_at).upcase
      hr -->
-  </div>
+    </div>
   </div>
 </div>

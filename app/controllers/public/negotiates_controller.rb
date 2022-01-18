@@ -1,6 +1,6 @@
 class Public::NegotiatesController < ApplicationController
   def show
-   @negotiate_real_estate_new = Relashionship.new
+    @negotiate_real_estate_new = Relashionship.new
   end
    
   def index
@@ -15,10 +15,8 @@ class Public::NegotiatesController < ApplicationController
     else
     render 'new'
     end
-  
   end
    
-    
   def real_estate_params
   params.require(:real_estate).permit(:category_id,:customer_id,:prefecture_id,:real_estate_image_id,
   :detail,:real_estate_name,:nearest_station,:kinds,:structure,:date_of_construction,:floor_building,

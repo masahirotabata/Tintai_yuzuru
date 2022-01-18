@@ -37,10 +37,10 @@ class RealEstate < ApplicationRecord
   enum order_status: { waiting_for_deposit: 0, confirmed_payment: 1, in_production: 2, ready_to_delivery: 3, done: 4 }
 
 
-  # attachment :image
-  def follow(customer_id)
-  relationships.create(followed_id: customer_id)
-  end
+    # attachment :image
+    def follow(customer_id)
+    relationships.create(followed_id: customer_id)
+    end
   # フォローを外すときの処理
     def unfollow(customer_id)
       relationships.find_by(followed_id: customer_id).destroy
@@ -48,16 +48,11 @@ class RealEstate < ApplicationRecord
     # 現在のユーザーがフォローしてたらtrueを返す
     def following?(follow)
       followings.include?(follow)
-  end
+    end
     # def matchers
     #   followings & followers
     # end
-
-	
- 
-    
-    
-   def self.looks(search, word)
+    def self.looks(search, word)
       if search == "perfect_match"
         @real_estate = RealEstate.where(area_id:　word)
       elsif search == "forward_match"
@@ -69,15 +64,13 @@ class RealEstate < ApplicationRecord
       else
         @real_estate = RealEstate.all
       end
-   end
-    
-    
+    end
+  
   #いいね機能の実装
   def favorited_by?(customer)
     favorites.where(customer_id: customer.id).exists?
   end
-  
- def create_notification_like!(current_customer)
+  def create_notification_like!(current_customer)
     # すでに「フォロー」されているか検索
     temp = Notification.where(["visitor_id = ? and visited_id = ? and customer_id = ? and action = ? ", current_customer.id, customer_id, id, 'follow'])
     # フォローされていない場合のみ、通知レコードを作成
@@ -97,20 +90,20 @@ class RealEstate < ApplicationRecord
   
   #通知機能
   def create_notification_by(current_customer)
-        notification = current_customer.active_notifications.new(
-          real_estate_id: id,
-          visited_id: customer_id,
-          action: "follow"
+    notification = current_customer.active_notifications.new(
+    real_estate_id: id,
+    visited_id: customer_id,
+    action: "follow"
         )
-        notification.save if notification.valid?
-    end
+    notification.save if notification.valid?
+  end
 
-   def create_notification_real_estate!(current_customer, real_estate_id)
+  def create_notification_real_estate!(current_customer, real_estate_id)
     # 自分以外に物件投稿している人をすべて取得し、全員に通知を送る
     temp_ids = real_estate.select(:customer_id).where(real_estate_id: id).where.not(customer_id: current_customer.id).distinct
     temp_ids.each do |temp_id|
-      save_notification_real_estate!(current_customer, real_estate_id, temp_id['customer_id'])
-    end
+    save_notification_real_estate!(current_customer, real_estate_id, temp_id['customer_id'])
+  end
     # まだ誰も物件投稿していない場合は、投稿者に通知を送る
     save_notification_real_estate!(current_customer, real_estate_id, customer_id) if temp_ids.blank?
   end

@@ -52,19 +52,19 @@ class Public::OrdersController < ApplicationController
   # end
  end
 
- def complete
-  if !Order.find(params[:id]).nil?
-   @order = Order.find(params[:id])
-  # @orders = Order.where(customer_id: current_customer.id, order_status: "done")
-   @order.order_status = "done"
-  @order.save
-  @cart_real_estates = CartRealEstate.find_by(customer_id: current_customer.id, real_estate_id: @order.real_estate_id)
-  @cart_real_estates.destroy
+  def complete
+    if !Order.find(params[:id]).nil?
+      @order = Order.find(params[:id])
+      # @orders = Order.where(customer_id: current_customer.id, order_status: "done")
+      @order.order_status = "done"
+      @order.save
+      @cart_real_estates = CartRealEstate.find_by(customer_id: current_customer.id, real_estate_id: @order.real_estate_id)
+      @cart_real_estates.destroy
+    end
   end
- end
  
-private
- def order_params
- params.require(:order).permit(:customer_id, :partner_id, :real_estate_id, :negotiate_id, :order_date, :moving_schedule_date, :payment_method, :commission, :order_status)
- end
+  private
+  def order_params
+    params.require(:order).permit(:customer_id, :partner_id, :real_estate_id, :negotiate_id, :order_date, :moving_schedule_date, :payment_method, :commission, :order_status)
+  end
 end

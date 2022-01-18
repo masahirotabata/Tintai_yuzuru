@@ -5,8 +5,7 @@ class Public::FavoritesController < ApplicationController
     favorite.save
     flash[:success] = "Liked post"
     redirect_to request.referer
-    
- end
+  end
 
   def destroy
     @real_estate = RealEstate.find(params[:real_estate_id])

@@ -8,19 +8,14 @@ class Public::OrderRealEstatesController < ApplicationController
   end
       
   def followings
-      
-  @followings = Customer.find(params[:customer_id]).following
-        
+    @followings = Customer.find(params[:customer_id]).following
   end
       
   def followers
-        
-  @followers = Customer.find(params[:customer_id]).followers
-       
+    @followers = Customer.find(params[:customer_id]).followers
   end
       
   def matchers
-  @matchers = followings & followers
+    @matchers = followings & followers
   end
-    
 end
