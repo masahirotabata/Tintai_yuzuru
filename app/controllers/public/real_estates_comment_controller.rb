@@ -20,7 +20,7 @@ class Public::RealEstatesCommentController < ApplicationController
     @real_estate_comments = RealEstateComment.all
   end
   def destroy
-    @real_estate_comment = RealEstateComment.find_by(params[:real_estate_id])
+    @real_estate_comment = RealEstateComment.find_by(id: params[:id])
       if @real_estate_comment.destroy
         flash[:notice] = '投稿物件を解除しました'
         redirect_to public_customer_path(current_customer)

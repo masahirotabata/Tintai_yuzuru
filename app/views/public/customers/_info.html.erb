@@ -1,32 +1,14 @@
 <div class = "contents">
   <div class='row'>
     <div class="col-md-3">
-      <%= attachment_image_tag(@customer_tag,  :real_estates_image, :fill, 100, 100, fallback: "no_image.jpg") %></tr>
-      <table border ="1" >
-        <tr>
-        <td> 
-        名前
-        </td>
-        <td>
-        <%= @customer.last_name %>
-        </td>
-        </tr>
-        <tr>
-        <td> 
-        職業
-        </td>
-        <td>
-        <%= @customer.jobs %>
-        </td>
-        </tr><tr>
-        <td> 
-        引っ越しの真剣度合い
-        </td>
-        <td>
-      　<%= @customer.seriousness %>
-        </td>
-        </tr><tr>
-      </table>
+      <%= attachment_image_tag(@customer_tag,  :real_estates_image, :fill, 100, 100, fallback: "no_image.jpg") %>
+      <div class="customer_info">
+        名前:<%= @customer.last_name %> <%= @customer.first_name %> </br>
+        
+        職業:<%= @customer.jobs %></br>
+        
+        引っ越しの真剣度合い:<%= @customer.seriousness %>
+       </div>
     <tbody>
       <% if @customer %>
       フォロー数: <%=link_to(@customer.following.count,public_customer_relationship_followings_path(relationship_id: @customer, customer_id: @customer)) %>

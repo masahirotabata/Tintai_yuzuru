@@ -50,10 +50,6 @@
     <h2><%= link_to('交渉中ユーザ',public_negotiates_path ) %></h2>
     <p>あなたの物件を譲って欲しいと考えているユーザー、もしくは物件を譲って欲しいと考えているユーザー（あなたがフォローしているユーザー）が表示されます。</p>
   </div>
-  <div class="col-md-3">
-    <h2><%= link_to('マッチング成立ユーザ',public_customer_relationship_matchers_path(customer_id: @customer.id, relationship_id: @customer.id) ) %></h2>
-    <p>お互いをフォローしあってマッチングすると、物件を譲ったり、譲ってもらえるようになります。リンク先では、マッチングが成立しているユーザー一覧が表示されます。</p>
-  </div>
 </div>
   <% end %>
 </div>

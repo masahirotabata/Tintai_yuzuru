@@ -7,7 +7,7 @@ class RealEstate < ApplicationRecord
   has_one :areas
   has_many :notifications, dependent: :destroy
   has_many :cart_real_estates
-  has_many :real_estate_comments
+  has_many :real_estate_comments, dependent: :destroy
   has_many :favorited_customers, through: :favorites, source: :real_estate
   attachment :image
   

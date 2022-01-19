@@ -12,7 +12,7 @@
     <ul class="navbar-nav ml-auto">
       <% if customer_signed_in? %>
         <span class="navbar-text">
-          ようこそ、<%= current_customer.last_name %>さん！
+          ようこそ、<%= current_customer.last_name %> <%= current_customer.first_name %>さん！
         </span>
       <li class="nav-real_estate">
         <%= link_to "マイページ", public_customer_path(current_customer), class: "nav-link" %>
