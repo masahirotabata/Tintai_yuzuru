@@ -1,17 +1,41 @@
-<%= form_with model: @customer, url: public_customer_path(@customer), local: true do |f| %>
-<div class="form-group row">
-  <%= f.label :jobs, "職業" %>
-  <%= f.text_field :jobs, placeholder: "職業を記述します" %>
+<div class = "contents">
+  <div class='row'>
+    <div class='col-md-9 offset-md-1'>
+      <h3>物件情報を登録してください。</h3>
+      <h3>入力情報が多いほど、物件譲渡希望者が増えやすくなります。</h3>
+        <%= form_with model: @customer, url: public_customer_path(@customer), local: true do |f| %>
+        <tr>
+        <table border ="1" >
+        <tr>
+          <th>入力項目</th>
+          <th>入力欄</th>
+        </tr>
+        <tr>
+          <td> 
+            <%= f.label :jobs, "職業" %>
+          </td>
+          <td>
+           <%= f.text_field :jobs, placeholder: "職業を記述します" %>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <%= f.label :seriousness, "引っ越しの真剣度合い" %>
+          </td>
+          <td>
+            <%= f.text_area :seriousness, placeholder: "ここに引っ越しの真剣度合いを記述します" %>
+          </td>
+        <tr></tr>
+          <td> 
+            <%= f.label :detail, "賃貸物件説明" %>
+          </td>
+          <td>
+            <%= f.text_area :detail, placeholder: "ここに家賃など賃貸物件の説明文を入力します" %>
+          </td>
+        </tr><tr>
+      </table>
+      <%= f.submit "自己紹介を更新する", class:"btn btn-success" %>
+    </div>
+        <% end %>
+  </div>
 </div>
-<div class="form-group row">
-  <%= f.label :seriousness, "引っ越しの真剣度合い" %>
-  <%= f.text_area :seriousness, placeholder: "ここに引っ越しの真剣度合いを記述します" %>
-</div>
-<div class="form-group row">
-  <%#= f.label :moving_schedule, "引っ越し予定日" %>
-  <%#= f.collection_select :category_id, Category.all, :id, :kinds, {prompt: "選択してください"} %>
-</div>
-<div class="actions">
-  <%#= f.submit "自己紹介を更新する" %>
-  <%= f.submit "自己紹介を更新する", class:"btn btn-success" %>
-  <% end %>
