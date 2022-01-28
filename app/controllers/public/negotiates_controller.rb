@@ -4,8 +4,9 @@ class Public::NegotiatesController < ApplicationController
   end
    
   def index
-    # customers = Customer.all
+    # フォロー一覧
     @following = current_customer.following
+    # フォロワー一覧
     @followers = current_customer.followers
   end
  
